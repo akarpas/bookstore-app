@@ -6,13 +6,48 @@
 }
 
 .menuCategory {
+    position: relative;
     cursor: pointer;
     border: 1px solid darkgray;
     padding: 5px 10px;
-    width: 70px;
+    min-width: 82px;
     text-align: center;
+    font-size: 16px;
+    outline: none;
 }
 
 .menuCategory:hover {
     background-color: lightgray;
+}
+
+.subMenu {
+    background-color: white;
+    width: 82px;
+    position: absolute;
+    top: 28px;
+    left: -1px;
+}
+
+.subMenu > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subMenu > ul > li {
+    width: calc(100% - 2px);
+    padding: 5px 0;
+    border: 1px solid lightgray;
+}
+
+.subMenu > ul > li:hover {
+    background-color: lightgray;
+}
+
+.subMenu > ul > li > a {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: black;
+    display: block;
+    min-width: 100%;
 }

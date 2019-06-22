@@ -1,0 +1,22 @@
+{
+    "books": [
+        {
+            "title": "1984",
+            "genre": "Sciene Fiction",
+            "price": 5,
+            "currency": "eur"
+        },
+        {
+            "title": "Brave New World",
+            "genre": "Sciene Fiction",
+            "price": 7,
+            "currency": "eur"
+        },
+        {
+            "title": "The DaVinci Code",
+            "genre": "Mystery",
+            "price": 6,
+            "currency": "eur"
+        }
+    ]
+}

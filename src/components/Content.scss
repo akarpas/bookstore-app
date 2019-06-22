@@ -1,1 +1,12 @@
-.contentContainer {}
+.contentContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% - 20px);
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: white;
+    color: black;
+    height: calc(100vh - 120px);
+}

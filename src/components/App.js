@@ -7,8 +7,10 @@ import style from './App.scss';
 
 const App = () => (
     <div className={style.appContainer}>
-        <Header />
-        <Content />
+        <div className={style.wrapper}>
+            <Header />
+            <Content />
+        </div>
     </div>
 );
 

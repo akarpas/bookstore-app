@@ -1,0 +1,12 @@
+.headerContainer {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 20px);
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: white;
+    color: black;
+    height: 30px;
+}

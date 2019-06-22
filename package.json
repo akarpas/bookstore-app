@@ -1,0 +1,9 @@
+{
+  "name": "bookstore-app",
+  "version": "0.0.1",
+  "description": "A bookstore app to handle book inventory",
+  "main": "index.js",
+  "repository": "https://github.com/akarpas/bookstore-app.git",
+  "author": "Andreas Karpasitis <karpasitis@outlook.com>",
+  "license": "MIT"
+}

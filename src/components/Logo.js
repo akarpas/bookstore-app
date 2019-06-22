@@ -4,7 +4,7 @@ import style from './Logo.scss';
 
 const Logo = () => (
     <div className={style.logoContainer}>
-        Logo
+        The Book Store
     </div>
 );
 

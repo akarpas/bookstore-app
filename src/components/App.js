@@ -1,8 +1,15 @@
 import React from 'react';
+
+import Header from './Header';
+import Content from './Content';
+
 import style from './App.scss';
 
 const App = () => (
-    <h1 className={style.header}> Book Store </h1>
+    <div className={style.appContainer}>
+        <Header />
+        <Content />
+    </div>
 );
 
 export default App;

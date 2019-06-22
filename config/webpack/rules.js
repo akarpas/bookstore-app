@@ -33,16 +33,14 @@ module.exports = [
             },
             {
                 loader: "css-loader",
-                query: {
+                options: {
                     modules: true,
-                    localIdentName: "[name]__[local]___[hash:base64:5]"
                 }
             },
             {
                 loader: "sass-loader",
-                query: {
+                options: {
                     modules: true,
-                    localIdentName: "[name]__[local]___[hash:base64:5]"
                 }
             }
         ]

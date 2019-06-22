@@ -63,7 +63,10 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --open"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test --watch",
+    "test:cover": "yarn test --coverage"
   },
   "jest": {
     "setupFiles": [

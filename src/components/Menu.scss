@@ -22,7 +22,6 @@
 
 .subMenu {
     background-color: white;
-    // z-index: 99;
     width: 82px;
     position: absolute;
     top: 28px;
@@ -36,10 +35,18 @@
 }
 
 .subMenu > ul > li {
+    width: calc(100% - 2px);
     padding: 5px 0;
     border: 1px solid lightgray;
 }
 
 .subMenu > ul > li:hover {
     background-color: lightgray;
+}
+
+.subMenu > ul > li > a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    min-width: 100%;
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 
-import style from './Header.scss';
+import style from './Menu.scss';
 
 const Menu = () => (
     <div className={style.menuContainer}>
-        Menu
+        <div className={style.menuCategory}>Books</div>
+        <div className={style.menuCategory}>Genres</div>
     </div>
 );
 

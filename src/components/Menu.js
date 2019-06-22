@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 import style from './Menu.scss';
 
+const MENU_OPTIONS = ['view', 'create', 'delete', 'update'];
+
 const Menu = () => {
     const [isShowSubMenu, setIsShowSubMenu] = useState({
-        books: true,
+        books: false,
         genres: false
     });
 
@@ -35,18 +37,16 @@ const Menu = () => {
                 {isShowSubMenu.books && (
                     <div className={style.subMenu}>
                         <ul>
-                            <li>
-                                <Link to="/view/books">View</Link>
-                            </li>
-                            <li>
-                                <Link to="/create/books">Create</Link>
-                            </li>
-                            <li>
-                                <Link to="/delete/books">Delete</Link>
-                            </li>
-                            <li>
-                                <Link to="/update/books">Update</Link>
-                            </li>
+                            {MENU_OPTIONS.map(subMenu => (
+                                <li key={`${subMenu}books-li`}>
+                                    <Link
+                                        key={`${subMenu}books`}
+                                        to={`/${subMenu}/books`}
+                                    >
+                                        {subMenu}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 )}
@@ -61,18 +61,16 @@ const Menu = () => {
                 {isShowSubMenu.genres && (
                     <div className={style.subMenu}>
                         <ul>
-                            <li>
-                                <Link to="/view/genres">View</Link>
-                            </li>
-                            <li>
-                                <Link to="/create/genres">Create</Link>
-                            </li>
-                            <li>
-                                <Link to="/delete/genres">Delete</Link>
-                            </li>
-                            <li>
-                                <Link to="/update/genres">Update</Link>
-                            </li>
+                            {MENU_OPTIONS.map(subMenu => (
+                                <li key={`${subMenu}genres-li`}>
+                                    <Link
+                                        key={`${subMenu}genres`}
+                                        to={`/${subMenu}/genres`}
+                                    >
+                                        {subMenu}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 )}

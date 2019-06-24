@@ -1,0 +1,24 @@
+{
+    "genres": [
+        {
+            "id": "1",
+            "title": "Science Fiction",
+            "nameId": "scienceFiction"
+        },
+        {
+            "id": "2",
+            "title": "Mystery",
+            "nameId": "mystery"
+        },
+        {
+            "id": "3",
+            "title": "Romance",
+            "nameId": "romance"
+        },
+        {
+            "id": "4",
+            "title": "Horror",
+            "nameId": "horros"
+        }
+    ]
+}

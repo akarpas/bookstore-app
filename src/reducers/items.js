@@ -1,6 +1,7 @@
 import {
     SET_BOOKS,
     BOOKS_LOADING,
+    DELETE_BOOK,
     CREATE_BOOK
 } from '../actions/types';
 import initialBooks from '../data/initialBooks.json';
@@ -18,6 +19,14 @@ const setBooksLoading = state => {
     return { ...state, booksLoading: true };
 };
 
+const deleteBook = (state, payload) => {
+    const currentBooks = state.booksList.slice(0);
+    const newBooks = currentBooks.filter(book =>
+        Number(book.id) !== Number(payload)
+    );
+    return { ...state, booksList: newBooks };
+};
+
 const createBook = (state, payload) => {
     const currentBooks = state.booksList.slice(0);
     const bookIds = currentBooks.map(book => book.id);
@@ -32,6 +41,8 @@ export function books(state = INITIAL_STATE, action) {
         return setBooks(state);
     case BOOKS_LOADING:
         return setBooksLoading(state);
+    case DELETE_BOOK:
+        return deleteBook(state, action.payload);
     case CREATE_BOOK:
         return createBook(state, action.payload);
     default:

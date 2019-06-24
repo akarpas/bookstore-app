@@ -2,6 +2,7 @@ import {
     SET_BOOKS,
     BOOKS_LOADING,
     DELETE_BOOK,
+    UPDATE_BOOK,
     CREATE_BOOK
 } from './types';
 
@@ -43,6 +44,13 @@ export const deleteBook = bookId => {
     };
 };
 
+export const updateBook = item => {
+    return {
+        type: UPDATE_BOOK,
+        payload: item
+    };
+};
+
 export const createItem = (type, item) => {
     return dispatch => {
         dispatch(createBook(item));
@@ -52,5 +60,11 @@ export const createItem = (type, item) => {
 export const deleteItem = (type, itemId) => {
     return dispatch => {
         dispatch(deleteBook(itemId));
+    };
+};
+
+export const updateItemData = (type, item) => {
+    return dispatch => {
+        dispatch(updateBook(item));
     };
 };

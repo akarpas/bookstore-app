@@ -16,7 +16,7 @@ const Create = props => {
         genreName: ''
     };
     const [bookValues, setBookValues] = useState(defaultBookValues);
-    const [genreValues,setGenreValues] = useState(defaultGenreValues);
+    const [genreValues, setGenreValues] = useState(defaultGenreValues);
     const { match } = props;
     const { params } = match;
     const { category } = params;
@@ -35,82 +35,95 @@ const Create = props => {
 
     const handleInputChange = event => {
         if (isBooks) {
-            setBookValues({ ...bookValues, [event.target.id]: event.target.value });
+            setBookValues({
+                ...bookValues,
+                [event.target.id]: event.target.value
+            });
         } else {
-            setGenreValues({ ...genreValues, [event.target.id]: event.target.value });
+            setGenreValues({
+                ...genreValues,
+                [event.target.id]: event.target.value
+            });
         }
     };
 
-    const render = () => {
-        return isBooks ? (
-            <form className={style.createForm} onSubmit={submit}>
-                <label htmlFor="title">
-                    Title:
-                    <input
-                        value={bookValues.title}
-                        required
-                        onChange={handleInputChange}
-                        id="title"
-                        type="text"
-                    />
-                </label>
-                <label htmlFor="genre">
-                    Genre:
-                    <select
-                        value={bookValues.genre}
-                        onChange={handleInputChange}
-                        id="genre"
-                    >
-                        <option value="scienceFiction">Science Fiction</option>
-                        <option value="mystery">Mystery</option>
-                        <option value="romance">Romance</option>
-                        <option value="horror">Horror</option>
-                    </select>
-                </label>
-                <label htmlFor="price">
-                    Price:
-                    <input
-                        value={bookValues.price}
-                        required
-                        onChange={handleInputChange}
-                        id="price"
-                        type="number"
-                    />
-                </label>
-                <label htmlFor="currency">
-                    Currency:
-                    <select
-                        value={bookValues.currency}
-                        onChange={handleInputChange}
-                        id="currency"
-                    >
-                        <option value="eur">EUR</option>
-                        <option value="usd">USD</option>
-                    </select>
-                </label>
-                <button type="submit">Create</button>
-            </form>
-        ) : (
-            <form className={style.createForm} onSubmit={submit}>
-                <label htmlFor="title">
-                    Name:
-                    <input
-                        value={genreValues.genreName}
-                        required
-                        onChange={handleInputChange}
-                        id="genreName"
-                        type="text"
-                    />
-                </label>
-                <button type="submit">Create</button>
-            </form>
-        );
+    const render = {
+        books: () => {
+            return (
+                <form className={style.createForm} onSubmit={submit}>
+                    <label htmlFor="title">
+                        Title:
+                        <input
+                            value={bookValues.title}
+                            required
+                            onChange={handleInputChange}
+                            id="title"
+                            type="text"
+                        />
+                    </label>
+                    <label htmlFor="genre">
+                        Genre:
+                        <select
+                            value={bookValues.genre}
+                            onChange={handleInputChange}
+                            id="genre"
+                        >
+                            <option value="scienceFiction">
+                                Science Fiction
+                            </option>
+                            <option value="mystery">Mystery</option>
+                            <option value="romance">Romance</option>
+                            <option value="horror">Horror</option>
+                        </select>
+                    </label>
+                    <label htmlFor="price">
+                        Price:
+                        <input
+                            value={bookValues.price}
+                            required
+                            onChange={handleInputChange}
+                            id="price"
+                            type="number"
+                        />
+                    </label>
+                    <label htmlFor="currency">
+                        Currency:
+                        <select
+                            value={bookValues.currency}
+                            onChange={handleInputChange}
+                            id="currency"
+                        >
+                            <option value="eur">EUR</option>
+                            <option value="usd">USD</option>
+                        </select>
+                    </label>
+                    <button type="submit">Create</button>
+                </form>
+            );
+        },
+        genres: () => {
+            return (
+                <form className={style.createForm} onSubmit={submit}>
+                    <label htmlFor="title">
+                        Name:
+                        <input
+                            value={genreValues.genreName}
+                            required
+                            onChange={handleInputChange}
+                            id="genreName"
+                            type="text"
+                        />
+                    </label>
+                    <button type="submit">Create</button>
+                </form>
+            );
+        }
     };
 
     return (
         <div className={style.createContainer}>
             <h2>Create a {category.substring(0, category.length - 1)}</h2>
-            {render()}
+            {render[category]()}
         </div>
     );
 };

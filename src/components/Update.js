@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchItems, updateItemData } from '../actions/items';
+import cloneDeep from 'lodash.clonedeep';
+import { fetchItems, updateItem } from '../actions/items';
 import style from './Delete.scss';
 
 const Update = props => {
     const { match, booksLoading, books, genres, genresLoading } = props;
-    const cloneBooks = books.slice(0);
-    const cloneGenres = genres.slice(0);
+    const cloneBooks = cloneDeep(books);
+    const cloneGenres = cloneDeep(genres);
     const { params } = match;
     const { category } = params;
     const isBooks = category === 'books';
@@ -167,7 +168,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchItems: category => dispatch(fetchItems(category)),
-        updateItem: (category, id) => dispatch(updateItemData(category, id))
+        updateItem: (category, id) => dispatch(updateItem(category, id))
     };
 };
 

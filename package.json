@@ -59,6 +59,7 @@
   "dependencies": {
     "capitalize": "^2.0.0",
     "cross-env": "^5.2.0",
+    "lodash.clonedeep": "^4.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

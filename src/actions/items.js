@@ -30,28 +30,20 @@ const actions = {
     })
 };
 
-export const fetchItems = category => {
-    return async dispatch => {
-        dispatch(actions.loading(category, true));
-        await delay(1000);
-        dispatch(actions.set(category));
-    };
+export const fetchItems = category => async dispatch => {
+    dispatch(actions.loading(category, true));
+    await delay(1000);
+    dispatch(actions.set(category));
 };
 
-export const createItem = (category, item) => {
-    return dispatch => {
-        dispatch(actions.create(category, item));
-    };
+export const createItem = (category, item) => dispatch => {
+    dispatch(actions.create(category, item));
 };
 
-export const deleteItem = (category, itemId) => {
-    return dispatch => {
-        dispatch(actions.delete(category, itemId));
-    };
+export const deleteItem = (category, itemId) => dispatch => {
+    dispatch(actions.delete(category, itemId));
 };
 
-export const updateItemData = (category, item) => {
-    return dispatch => {
-        dispatch(actions.update(category, item));
-    };
+export const updateItem = (category, item) => dispatch => {
+    dispatch(actions.update(category, item));
 };

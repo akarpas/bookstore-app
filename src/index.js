@@ -20,12 +20,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import store from './store';
+import configureStore from './store';
 import App from './components/App';
 
 ReactDOM.render(
     <BrowserRouter>
-        <Provider store={store}>
+        <Provider store={configureStore()}>
             <App />
         </Provider>
     </BrowserRouter>,

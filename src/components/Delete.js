@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {
+    getBooksLoading, getGenresLoading, getBooks, getGenres,
+} from '../reducers/items';
 import { fetchItems, deleteItem } from '../actions/items';
 import style from './Delete.scss';
 
@@ -105,10 +108,10 @@ const Delete = props => {
 
 const mapStateToProps = state => {
     return {
-        books: state.items.booksList,
-        booksLoading: state.items.booksLoading,
-        genres: state.items.genresList,
-        genresLoading: state.items.genresLoading
+        books: getBooks(state),
+        booksLoading: getBooksLoading(state),
+        genres: getGenres(state),
+        genresLoading: getGenresLoading(state)
     };
 };
 

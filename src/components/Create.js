@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {
+    getGenresLoading, getGenres,
+} from '../reducers/items';
 import { createItem, fetchItems } from '../actions/items';
 import style from './Create.scss';
 
@@ -28,7 +31,6 @@ const Create = props => {
 
     const submit = event => {
         event.preventDefault();
-        console.warn(bookValues, genres)
         if (isBooks) {
             const genreName = genres.find(genre => genre.nameId === bookValues.genre);
 
@@ -136,8 +138,8 @@ const Create = props => {
 
 const mapStateToProps = state => {
     return {
-        genres: state.items.genresList,
-        genresLoading: state.items.genresLoading
+        genres: getGenres(state),
+        genresLoading: getGenresLoading(state)
     };
 };
 

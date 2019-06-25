@@ -2,22 +2,22 @@
     "genres": [
         {
             "id": "1",
-            "title": "Science Fiction",
+            "name": "Science Fiction",
             "nameId": "scienceFiction"
         },
         {
             "id": "2",
-            "title": "Mystery",
+            "name": "Mystery",
             "nameId": "mystery"
         },
         {
             "id": "3",
-            "title": "Romance",
+            "name": "Romance",
             "nameId": "romance"
         },
         {
             "id": "4",
-            "title": "Horror",
+            "name": "Horror",
             "nameId": "horros"
         }
     ]

@@ -13,7 +13,6 @@ const Update = props => {
     const { category } = params;
     const isBooks = category === 'books';
     const [itemValues, setItemValues] = useState({ books: cloneBooks, genres: cloneGenres } || []);
-    console.warn(itemValues);
 
     useEffect(() => {
         props.fetchItems(category);
@@ -21,7 +20,6 @@ const Update = props => {
 
     const handleInputChange = event => {
         const [field, id] = event.target.id.split('-');
-        console.warn(field, id)
         const itemToUpdate = itemValues[category].findIndex(item => item.id === id);
         const newValues = itemValues[category].splice(0);
         newValues[itemToUpdate][field] = event.target.value;
@@ -141,7 +139,7 @@ const Update = props => {
                 </table>
             );
         }
-    }
+    };
 
     const itemsLoading = isBooks ? booksLoading : genresLoading;
 

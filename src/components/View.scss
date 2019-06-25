@@ -1,0 +1,33 @@
+.viewHeader {
+    width: 100%;
+    text-align: center;
+}
+
+.viewContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    padding: 0;
+    width: 95%;
+}
+
+td {
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+th, tr, td {
+    text-align: left;
+    width: auto;
+}
+
+.bookPrice {
+    text-transform: uppercase;
+}

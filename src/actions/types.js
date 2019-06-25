@@ -1,0 +1,10 @@
+export const SET_BOOKS = 'set_books';
+export const BOOKS_LOADING = 'books_loading';
+export const DELETE_BOOK = 'delete_book';
+export const UPDATE_BOOK = 'update_book';
+export const CREATE_BOOK = 'create_book';
+export const SET_GENRES = 'set_genres';
+export const GENRES_LOADING = 'genres_loading';
+export const DELETE_GENRE= 'delete_genre';
+export const UPDATE_GENRE= 'update_genre';
+export const CREATE_GENRE= 'create_genre';

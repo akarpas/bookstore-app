@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchItems } from '../actions/items';
+import {
+    getBooksLoading, getGenresLoading, getBooks, getGenres,
+} from '../reducers/items';
 import style from './View.scss';
 
 const View = props => {
@@ -12,7 +15,7 @@ const View = props => {
     const isBooks = category === 'books';
 
     useEffect(() => {
-        props.fetchItems(category);
+        fetchItems(category);
     }, []);
 
     useEffect(() => {
@@ -80,10 +83,10 @@ const View = props => {
 
 const mapStateToProps = state => {
     return {
-        books: state.items.booksList,
-        booksLoading: state.items.booksLoading,
-        genres: state.items.genresList,
-        genresLoading: state.items.genresLoading
+        books: getBooks(state),
+        booksLoading: getBooksLoading(state),
+        genres: getGenres(state),
+        genresLoading: getGenresLoading(state)
     };
 };
 

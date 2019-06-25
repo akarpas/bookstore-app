@@ -15,7 +15,7 @@ const View = props => {
     const isBooks = category === 'books';
 
     useEffect(() => {
-        fetchItems(category);
+        props.fetchItems(category);
     }, []);
 
     useEffect(() => {

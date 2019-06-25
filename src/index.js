@@ -1,3 +1,5 @@
+// TO DO: Recheck if these packages are necessary for
+// Internet Explorer - they are making the asset size too large
 import 'raf/polyfill';
 import 'core-js/es/map';
 import 'core-js/es/set';

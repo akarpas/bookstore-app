@@ -19,39 +19,49 @@ const View = props => {
         props.fetchItems(category);
     }, [category]);
 
-    const render = content => {
-        return isBooks ? (
-            <tbody>
-                <tr>
-                    <th>Title: </th>
-                    <th>Genre: </th>
-                    <th>Price: </th>
-                </tr>
-                {content.map(book => (
-                    <tr key={`${book.title}row`}>
-                        <td key={book.title}>{book.title}</td>
-                        <td key={book.title + book.genre}>{book.genre}</td>
-                        <td
-                            className={style.bookPrice}
-                            key={book.title + book.price}
-                        >
-                            {book.price} {book.currency}
-                        </td>
+    const render = {
+        books: content => {
+            return (
+                <tbody>
+                    <tr>
+                        <th>Title: </th>
+                        <th>Genre: </th>
+                        <th>Price: </th>
                     </tr>
-                ))}
-            </tbody>
-        ) : (
-            <tbody>
-                <tr>
-                    <th>Genre: </th>
-                </tr>
-                {content.map(genre => (
-                    <tr key={`${genre.name}row`}>
-                        <td key={genre.name}>{genre.name}</td>
+                    {content.map(book => (
+                        <tr key={`${book.title}row`}>
+                            <td key={book.title}>{book.title}</td>
+                            <td key={book.title + book.genre}>{book.genre}</td>
+                            <td
+                                className={style.bookPrice}
+                                key={book.title + book.price}
+                            >
+                                {book.price} {book.currency}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            );
+        },
+        genres: content => {
+            return (
+                <tbody>
+                    <tr>
+                        <th>Genre: </th>
                     </tr>
-                ))}
-            </tbody>
-        );
+                    {content.map(genre => (
+                        <tr key={`${genre.name}row`}>
+                            <td key={genre.name}>{genre.name}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            );
+        }
+    };
+
+    const content = {
+        books,
+        genres
     };
 
     const itemsLoading = isBooks ? booksLoading : genresLoading;
@@ -62,7 +72,7 @@ const View = props => {
             {itemsLoading ? (
                 <div>Loading...</div>
             ) : (
-                <table>{render(isBooks ? books : genres)}</table>
+                <table>{render[category](content[category])}</table>
             )}
         </div>
     );

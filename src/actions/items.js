@@ -1,120 +1,52 @@
-import {
-    SET_BOOKS,
-    BOOKS_LOADING,
-    DELETE_BOOK,
-    UPDATE_BOOK,
-    CREATE_BOOK,
-    GENRES_LOADING,
-    SET_GENRES,
-    CREATE_GENRE,
-    DELETE_GENRE,
-    UPDATE_GENRE
-} from './types';
+import toPascalCase from 'to-pascal-case';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-export const booksLoading = isLoading => {
-    return {
-        type: BOOKS_LOADING,
+const actions = {
+    loading: (category, isLoading) => ({
+        type: `${category}Loading`,
         payload: isLoading
-    };
-};
-
-export const genresLoading = isLoading => {
-    return {
-        type: GENRES_LOADING,
-        payload: isLoading
-    };
-};
-
-export const setBooks = () => {
-    return {
-        type: SET_BOOKS,
+    }),
+    set: (category) => ({
+        type: `set${toPascalCase(category)}`,
         payload: null
-    };
-};
-
-export const setGenres = () => {
-    return {
-        type: SET_GENRES,
-        payload: null
-    };
+    }),
+    create: (category, item) => ({
+        type: `create${toPascalCase(category.slice(0, category.length - 1))}`,
+        payload: item
+    }),
+    delete: (category, id) => ({
+        type: `delete${toPascalCase(category.slice(0, category.length - 1))}`,
+        payload: id
+    }),
+    update: (category, item) => ({
+        type: `update${toPascalCase(category.slice(0, category.length - 1))}`,
+        payload: item
+    })
 };
 
 export const fetchItems = category => {
-    return category === 'books' ? async dispatch => {
-        dispatch(booksLoading(true));
+    return async dispatch => {
+        dispatch(actions.loading(category, true));
         await delay(1000);
-        dispatch(setBooks());
-    } : async dispatch => {
-        dispatch(genresLoading(true));
-        await delay(1000);
-        dispatch(setGenres());
-    };
-};
-
-export const createBook = book => {
-    return {
-        type: CREATE_BOOK,
-        payload: book
-    };
-};
-
-export const createGenre = book => {
-    return {
-        type: CREATE_GENRE,
-        payload: book
-    };
-};
-
-export const deleteBook = bookId => {
-    return {
-        type: DELETE_BOOK,
-        payload: bookId
-    };
-};
-
-export const deleteGenre = genreId => {
-    return {
-        type: DELETE_GENRE,
-        payload: genreId
-    };
-};
-
-export const updateBook = item => {
-    return {
-        type: UPDATE_BOOK,
-        payload: item
-    };
-};
-
-export const updateGenre = item => {
-    return {
-        type: UPDATE_GENRE,
-        payload: item
+        dispatch(actions.set(category));
     };
 };
 
 export const createItem = (category, item) => {
-    return category === 'books' ? dispatch => {
-        dispatch(createBook(item));
-    } : dispatch => {
-        dispatch(createGenre(item));
+    return dispatch => {
+        dispatch(actions.create(category, item));
     };
 };
 
 export const deleteItem = (category, itemId) => {
-    return category === 'books' ? dispatch => {
-        dispatch(deleteBook(itemId));
-    } : dispatch => {
-        dispatch(deleteGenre(itemId));
+    return dispatch => {
+        dispatch(actions.delete(category, itemId));
     };
 };
 
 export const updateItemData = (category, item) => {
-    return category === 'books' ? dispatch => {
-        dispatch(updateBook(item));
-    } : dispatch => {
-        dispatch(updateGenre(item));
+    return dispatch => {
+        dispatch(actions.update(category, item));
     };
 };

@@ -6,35 +6,48 @@ import { createItem } from '../actions/items';
 import style from './Create.scss';
 
 const Create = props => {
-    const initialState = {
+    const defaultBookValues = {
         title: '',
         price: '',
         genre: 'mystery',
         currency: 'eur'
     };
-    const [state, setState] = useState(initialState);
+    const defaultGenreValues = {
+        genreName: ''
+    }
+    const [bookValues, setBookValues] = useState(defaultBookValues);
+    const [genreValues,setGenreValues] = useState(defaultGenreValues);
     const { match } = props;
     const { params } = match;
     const { category } = params;
+    const isBooks = category === 'books';
 
     const submit = event => {
         event.preventDefault();
-        props.createItem(category, state);
-        setState(initialState);
+        if (isBooks) {
+            props.createItem(category, bookValues);
+            setBookValues(defaultBookValues)
+        } else {
+            props.createItem(category, genreValues);
+            setGenreValues(defaultGenreValues)
+        }
     };
 
     const handleInputChange = event => {
-        setState({ ...state, [event.target.id]: event.target.value });
+        if (isBooks) {
+            setBookValues({ ...bookValues, [event.target.id]: event.target.value });
+        } else {
+            setGenreValues({ ...genreValues, [event.target.id]: event.target.value });
+        }
     };
 
-    return (
-        <div className={style.createContainer}>
-            <h2>Create a {category.substring(0, category.length - 1)}</h2>
+    const render = () => {
+        return isBooks ? (
             <form className={style.createForm} onSubmit={submit}>
                 <label htmlFor="title">
                     Title:
                     <input
-                        value={state.title}
+                        value={bookValues.title}
                         required
                         onChange={handleInputChange}
                         id="title"
@@ -44,7 +57,7 @@ const Create = props => {
                 <label htmlFor="genre">
                     Genre:
                     <select
-                        value={state.genre}
+                        value={bookValues.genre}
                         onChange={handleInputChange}
                         id="genre"
                     >
@@ -57,7 +70,7 @@ const Create = props => {
                 <label htmlFor="price">
                     Price:
                     <input
-                        value={state.price}
+                        value={bookValues.price}
                         required
                         onChange={handleInputChange}
                         id="price"
@@ -67,7 +80,7 @@ const Create = props => {
                 <label htmlFor="currency">
                     Currency:
                     <select
-                        value={state.currency}
+                        value={bookValues.currency}
                         onChange={handleInputChange}
                         id="currency"
                     >
@@ -77,6 +90,27 @@ const Create = props => {
                 </label>
                 <button type="submit">Create</button>
             </form>
+        ) : (
+            <form className={style.createForm} onSubmit={submit}>
+                <label htmlFor="title">
+                    Name:
+                    <input
+                        value={genreValues.genreName}
+                        required
+                        onChange={handleInputChange}
+                        id="genreName"
+                        type="text"
+                    />
+                </label>
+                <button type="submit">Create</button>
+            </form>
+        );
+    };
+
+    return (
+        <div className={style.createContainer}>
+            <h2>Create a {category.substring(0, category.length - 1)}</h2>
+            {render()}
         </div>
     );
 };

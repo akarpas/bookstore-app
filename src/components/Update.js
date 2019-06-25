@@ -6,11 +6,14 @@ import { fetchItems, updateItemData } from '../actions/items';
 import style from './Delete.scss';
 
 const Update = props => {
-    const { match, booksLoading, books } = props;
+    const { match, booksLoading, books, genres, genresLoading } = props;
     const cloneBooks = books.slice(0);
+    const cloneGenres = genres.slice(0);
     const { params } = match;
     const { category } = params;
-    const [itemValues, setItemValues] = useState(cloneBooks || []);
+    const isBooks = category === 'books';
+    const [itemValues, setItemValues] = useState({ books: cloneBooks, genres: cloneGenres } || []);
+    console.warn(itemValues);
 
     useEffect(() => {
         props.fetchItems(category);
@@ -18,26 +21,24 @@ const Update = props => {
 
     const handleInputChange = event => {
         const [field, id] = event.target.id.split('-');
-        const itemToUpdate = itemValues.findIndex(item => item.id === id);
-        const newValues = itemValues.splice(0);
+        console.warn(field, id)
+        const itemToUpdate = itemValues[category].findIndex(item => item.id === id);
+        const newValues = itemValues[category].splice(0);
         newValues[itemToUpdate][field] = event.target.value;
-        setItemValues(newValues);
+        setItemValues({ [category]: newValues });
     };
 
     const handleUpdateItem = event => {
         const { id } = event.target;
-        const itemToUpdate = itemValues.find(
+        const itemToUpdate = itemValues[category].find(
             item => Number(item.id) === Number(id)
         );
         props.updateItem(category, itemToUpdate);
     };
 
-    return (
-        <div className={style.deleteContainer}>
-            <h2 className={style.deleteHeader}>Update {category}</h2>
-            {booksLoading ? (
-                <div>Loading...</div>
-            ) : (
+    const render = {
+        books: content => {
+            return (
                 <table cellSpacing="0">
                     <tbody>
                         <tr>
@@ -47,7 +48,7 @@ const Update = props => {
                             <th>Price: </th>
                             <th>Currency: </th>
                         </tr>
-                        {itemValues.map((book, index) => (
+                        {content.map((book, index) => (
                             <tr key={`${index}row`}>
                                 <td>
                                     <button
@@ -105,6 +106,52 @@ const Update = props => {
                         ))}
                     </tbody>
                 </table>
+            );
+        },
+        genres: content => {
+            return (
+                <table cellSpacing="0">
+                    <tbody>
+                        <tr>
+                            <th>Update: </th>
+                            <th>Genre: </th>
+                        </tr>
+                        {content.map((genre, index) => (
+                            <tr key={`${index}row`}>
+                                <td>
+                                    <button
+                                        onClick={handleUpdateItem}
+                                        type="button"
+                                        id={genre.id}
+                                    >
+                                        Update
+                                    </button>
+                                </td>
+                                <td key={`${index}genre`}>
+                                    <input
+                                        onChange={handleInputChange}
+                                        id={`name-${genre.id}`}
+                                        type="text"
+                                        value={genre.name}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            );
+        }
+    }
+
+    const itemsLoading = isBooks ? booksLoading : genresLoading;
+
+    return (
+        <div className={style.deleteContainer}>
+            <h2 className={style.deleteHeader}>Update {category}</h2>
+            {itemsLoading ? (
+                <div>Loading...</div>
+            ) : (
+                render[category](itemValues[category])
             )}
         </div>
     );
@@ -113,7 +160,9 @@ const Update = props => {
 const mapStateToProps = state => {
     return {
         books: state.items.booksList,
-        booksLoading: state.items.booksLoading
+        booksLoading: state.items.booksLoading,
+        genres: state.items.genresList,
+        genresLoading: state.items.genresLoading
     };
 };
 
@@ -132,6 +181,8 @@ export default withRouter(
 );
 
 Update.propTypes = {
+    genresLoading: PropTypes.bool,
+    genres: PropTypes.array,
     booksLoading: PropTypes.bool,
     books: PropTypes.array,
     fetchItems: PropTypes.func,

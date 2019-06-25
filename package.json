@@ -57,6 +57,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "capitalize": "^2.0.0",
     "cross-env": "^5.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -67,6 +68,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "to-camel-case": "^1.0.0",
     "to-pascal-case": "^1.0.0"
   },
   "scripts": {

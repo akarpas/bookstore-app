@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createItem } from '../actions/items';
+import { createItem, fetchItems } from '../actions/items';
 import style from './Create.scss';
 
 const Create = props => {
@@ -17,15 +17,22 @@ const Create = props => {
     };
     const [bookValues, setBookValues] = useState(defaultBookValues);
     const [genreValues, setGenreValues] = useState(defaultGenreValues);
-    const { match } = props;
+    const { match, genres, genresLoading } = props;
     const { params } = match;
     const { category } = params;
     const isBooks = category === 'books';
 
+    useEffect(() => {
+        props.fetchItems('genres');
+    }, []);
+
     const submit = event => {
         event.preventDefault();
+        console.warn(bookValues, genres)
         if (isBooks) {
-            props.createItem(category, bookValues);
+            const genreName = genres.find(genre => genre.nameId === bookValues.genre);
+
+            props.createItem(category, { ...bookValues, genre: genreName.name });
             setBookValues(defaultBookValues);
         } else {
             props.createItem(category, genreValues);
@@ -68,12 +75,11 @@ const Create = props => {
                             onChange={handleInputChange}
                             id="genre"
                         >
-                            <option value="scienceFiction">
-                                Science Fiction
-                            </option>
-                            <option value="mystery">Mystery</option>
-                            <option value="romance">Romance</option>
-                            <option value="horror">Horror</option>
+                            {genres.map(genre =>
+                                <option key={genre.id + genre.nameId} value={genre.nameId}>
+                                    {genre.name}
+                                </option>
+                            )})
                         </select>
                     </label>
                     <label htmlFor="price">
@@ -123,25 +129,36 @@ const Create = props => {
     return (
         <div className={style.createContainer}>
             <h2>Create a {category.substring(0, category.length - 1)}</h2>
-            {render[category]()}
+            {genresLoading ? <div>Loading...</div> : render[category]()}
         </div>
     );
 };
 
+const mapStateToProps = state => {
+    return {
+        genres: state.items.genresList,
+        genresLoading: state.items.genresLoading
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
+        fetchItems: category => dispatch(fetchItems(category)),
         createItem: (category, item) => dispatch(createItem(category, item))
     };
 };
 
 export default withRouter(
     connect(
-        null,
+        mapStateToProps,
         mapDispatchToProps
     )(Create)
 );
 
 Create.propTypes = {
+    genres: PropTypes.array,
+    genresLoading: PropTypes.bool,
+    fetchItems: PropTypes.func,
     createItem: PropTypes.func,
     match: PropTypes.object
 };

@@ -66,7 +66,7 @@ const createItem = (state, payload, category) => {
     return { ...state, [list]: currentItems };
 };
 
-export function items(state = INITIAL_STATE, action) { // eslint-disable-line
+export default (state = INITIAL_STATE, action) => { // eslint-disable-line
     switch (action.type) {
     case SET_BOOKS:
     case SET_GENRES:
@@ -87,3 +87,8 @@ export function items(state = INITIAL_STATE, action) { // eslint-disable-line
         return state;
     }
 }
+
+export const getBooksLoading = (state) => state.items.booksLoading;
+export const getGenresLoading = (state) => state.items.genresLoading;
+export const getBooks = (state) => state.items.booksList;
+export const getGenres = (state) => state.items.genresList;

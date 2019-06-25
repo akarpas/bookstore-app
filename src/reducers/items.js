@@ -8,7 +8,7 @@ import {
     GENRES_LOADING,
     DELETE_GENRE,
     CREATE_GENRE,
-    // UPDATE_GENRE
+    UPDATE_GENRE
 } from '../actions/types';
 import initialBooks from '../data/initialBooks.json';
 import initialGenres from '../data/initialGenres.json';
@@ -60,6 +60,14 @@ const updateBook = (state, payload) => {
     return { ...state, booksList: currentBooks };
 };
 
+const updateGenre = (state, payload) => {
+    const { id } = payload;
+    const currentGenres = state.genresList.slice(0);
+    const index = currentGenres.findIndex((genre => Number(genre.id) === Number(id)));
+    currentGenres[index] = payload;
+    return { ...state, genresList: currentGenres };
+};
+
 const createBook = (state, payload) => {
     const currentBooks = state.booksList.slice(0);
     const bookIds = currentBooks.map(book => book.id);
@@ -96,6 +104,8 @@ export function items(state = INITIAL_STATE, action) { // eslint-disable-line
         return createGenre(state, action.payload);
     case DELETE_GENRE:
         return deleteGenre(state, action.payload);
+    case UPDATE_GENRE:
+        return updateGenre(state, action.payload);
     default:
         return state;
     }

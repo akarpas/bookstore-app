@@ -7,7 +7,8 @@ import {
     GENRES_LOADING,
     SET_GENRES,
     CREATE_GENRE,
-    DELETE_GENRE
+    DELETE_GENRE,
+    UPDATE_GENRE
 } from './types';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -87,6 +88,13 @@ export const updateBook = item => {
     };
 };
 
+export const updateGenre = item => {
+    return {
+        type: UPDATE_GENRE,
+        payload: item
+    };
+};
+
 export const createItem = (category, item) => {
     return category === 'books' ? dispatch => {
         dispatch(createBook(item));
@@ -103,8 +111,10 @@ export const deleteItem = (category, itemId) => {
     };
 };
 
-export const updateItemData = (type, item) => {
-    return dispatch => {
+export const updateItemData = (category, item) => {
+    return category === 'books' ? dispatch => {
         dispatch(updateBook(item));
+    } : dispatch => {
+        dispatch(updateGenre(item));
     };
 };

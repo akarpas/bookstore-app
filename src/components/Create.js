@@ -14,7 +14,7 @@ const Create = props => {
     };
     const defaultGenreValues = {
         genreName: ''
-    }
+    };
     const [bookValues, setBookValues] = useState(defaultBookValues);
     const [genreValues,setGenreValues] = useState(defaultGenreValues);
     const { match } = props;
@@ -26,10 +26,10 @@ const Create = props => {
         event.preventDefault();
         if (isBooks) {
             props.createItem(category, bookValues);
-            setBookValues(defaultBookValues)
+            setBookValues(defaultBookValues);
         } else {
             props.createItem(category, genreValues);
-            setGenreValues(defaultGenreValues)
+            setGenreValues(defaultGenreValues);
         }
     };
 

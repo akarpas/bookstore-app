@@ -65,8 +65,8 @@ const Delete = props => {
 
 const mapStateToProps = state => {
     return {
-        books: state.books.booksList,
-        booksLoading: state.books.booksLoading
+        books: state.items.booksList,
+        booksLoading: state.items.booksLoading
     };
 };
 

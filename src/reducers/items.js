@@ -6,7 +6,7 @@ import {
     CREATE_BOOK,
     SET_GENRES,
     GENRES_LOADING,
-    // DELETE_GENRE,
+    DELETE_GENRE,
     CREATE_GENRE,
     // UPDATE_GENRE
 } from '../actions/types';
@@ -42,6 +42,14 @@ const deleteBook = (state, payload) => {
         Number(book.id) !== Number(payload)
     );
     return { ...state, booksList: newBooks };
+};
+
+const deleteGenre = (state, payload) => {
+    const currentGenres = state.genresList.slice(0);
+    const newGenres = currentGenres.filter(genre =>
+        Number(genre.id) !== Number(payload)
+    );
+    return { ...state, genresList: newGenres };
 };
 
 const updateBook = (state, payload) => {
@@ -86,6 +94,8 @@ export function items(state = INITIAL_STATE, action) { // eslint-disable-line
         return setGenresLoading(state);
     case CREATE_GENRE:
         return createGenre(state, action.payload);
+    case DELETE_GENRE:
+        return deleteGenre(state, action.payload);
     default:
         return state;
     }

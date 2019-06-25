@@ -6,7 +6,8 @@ import {
     CREATE_BOOK,
     GENRES_LOADING,
     SET_GENRES,
-    CREATE_GENRE
+    CREATE_GENRE,
+    DELETE_GENRE
 } from './types';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -72,6 +73,13 @@ export const deleteBook = bookId => {
     };
 };
 
+export const deleteGenre = genreId => {
+    return {
+        type: DELETE_GENRE,
+        payload: genreId
+    };
+};
+
 export const updateBook = item => {
     return {
         type: UPDATE_BOOK,
@@ -87,9 +95,11 @@ export const createItem = (category, item) => {
     };
 };
 
-export const deleteItem = (type, itemId) => {
-    return dispatch => {
+export const deleteItem = (category, itemId) => {
+    return category === 'books' ? dispatch => {
         dispatch(deleteBook(itemId));
+    } : dispatch => {
+        dispatch(deleteGenre(itemId));
     };
 };
 

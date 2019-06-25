@@ -7,15 +7,10 @@ import rootReducer from './reducers';
 
 const middleware = applyMiddleware(thunk, logger);
 
-// const reduxDevTools =
-//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//     window.__REDUX_DEVTOOLS_EXTENSION__()
-
-const store = createStore(
-    rootReducer,
-    composeWithDevTools(
-        middleware
-    )
-);
-
-export default store;
+export default function configureStore(initialState = {}) {
+    return createStore(
+        rootReducer,
+        initialState,
+        composeWithDevTools(middleware)
+    );
+}

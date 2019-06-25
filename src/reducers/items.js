@@ -1,3 +1,6 @@
+import toCamelCase from 'to-camel-case';
+import capitalize from 'capitalize';
+
 import {
     SET_BOOKS,
     BOOKS_LOADING,
@@ -54,7 +57,11 @@ const createItem = (state, payload, category) => {
     const lastId = Math.max.apply(null, itemIds);
     currentItems.push(isBooks
         ? { ...payload, id: String(lastId + 1) }
-        : { ...payload, name: payload.genreName, id: String(lastId + 1) }
+        : {
+            nameId: toCamelCase(payload.genreName),
+            name: capitalize.words(payload.genreName),
+            id: String(lastId + 1)
+        }
     );
     return { ...state, [list]: currentItems };
 };

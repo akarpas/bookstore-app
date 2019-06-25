@@ -3,13 +3,21 @@ import {
     BOOKS_LOADING,
     DELETE_BOOK,
     UPDATE_BOOK,
-    CREATE_BOOK
+    CREATE_BOOK,
+    SET_GENRES,
+    GENRES_LOADING,
+    // DELETE_GENRE,
+    CREATE_GENRE,
+    // UPDATE_GENRE
 } from '../actions/types';
 import initialBooks from '../data/initialBooks.json';
+import initialGenres from '../data/initialGenres.json';
 
 const INITIAL_STATE = {
     booksList: initialBooks.books,
-    booksLoading: false
+    booksLoading: false,
+    genresList: initialGenres.genres,
+    genresLoading: false
 };
 
 const setBooks = state => {
@@ -18,6 +26,14 @@ const setBooks = state => {
 
 const setBooksLoading = state => {
     return { ...state, booksLoading: true };
+};
+
+const setGenres = state => {
+    return { ...state, genresLoading: false };
+};
+
+const setGenresLoading = state => {
+    return { ...state, genresLoading: true };
 };
 
 const deleteBook = (state, payload) => {
@@ -44,7 +60,15 @@ const createBook = (state, payload) => {
     return { ...state, booksList: currentBooks };
 };
 
-export function books(state = INITIAL_STATE, action) { // eslint-disable-line
+const createGenre = (state, payload) => {
+    const currentGenres = state.genresList.slice(0);
+    const genreIds = currentGenres.map(genre => genre.id);
+    const lastId = Math.max.apply(null, genreIds);
+    currentGenres.push({ ...payload, name: payload.genreName, id: String(lastId + 1) });
+    return { ...state, genresList: currentGenres };
+};
+
+export function items(state = INITIAL_STATE, action) { // eslint-disable-line
     switch (action.type) {
     case SET_BOOKS:
         return setBooks(state);
@@ -56,8 +80,13 @@ export function books(state = INITIAL_STATE, action) { // eslint-disable-line
         return updateBook(state, action.payload);
     case CREATE_BOOK:
         return createBook(state, action.payload);
+    case SET_GENRES:
+        return setGenres(state);
+    case GENRES_LOADING:
+        return setGenresLoading(state);
+    case CREATE_GENRE:
+        return createGenre(state, action.payload);
     default:
         return state;
     }
 }
-

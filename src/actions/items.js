@@ -3,7 +3,10 @@ import {
     BOOKS_LOADING,
     DELETE_BOOK,
     UPDATE_BOOK,
-    CREATE_BOOK
+    CREATE_BOOK,
+    GENRES_LOADING,
+    SET_GENRES,
+    CREATE_GENRE
 } from './types';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -15,6 +18,13 @@ export const booksLoading = isLoading => {
     };
 };
 
+export const genresLoading = isLoading => {
+    return {
+        type: GENRES_LOADING,
+        payload: isLoading
+    };
+};
+
 export const setBooks = () => {
     return {
         type: SET_BOOKS,
@@ -22,17 +32,35 @@ export const setBooks = () => {
     };
 };
 
-export const fetchItems = () => {
-    return async dispatch => {
+export const setGenres = () => {
+    return {
+        type: SET_GENRES,
+        payload: null
+    };
+};
+
+export const fetchItems = category => {
+    return category === 'books' ? async dispatch => {
         dispatch(booksLoading(true));
-        await delay(2000);
+        await delay(1000);
         dispatch(setBooks());
+    } : async dispatch => {
+        dispatch(genresLoading(true));
+        await delay(1000);
+        dispatch(setGenres());
     };
 };
 
 export const createBook = book => {
     return {
         type: CREATE_BOOK,
+        payload: book
+    };
+};
+
+export const createGenre = book => {
+    return {
+        type: CREATE_GENRE,
         payload: book
     };
 };
@@ -51,9 +79,11 @@ export const updateBook = item => {
     };
 };
 
-export const createItem = (type, item) => {
-    return dispatch => {
+export const createItem = (category, item) => {
+    return category === 'books' ? dispatch => {
         dispatch(createBook(item));
+    } : dispatch => {
+        dispatch(createGenre(item));
     };
 };
 

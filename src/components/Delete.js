@@ -6,6 +6,7 @@ import {
     getBooksLoading, getGenresLoading, getBooks, getGenres,
 } from '../reducers/items';
 import { fetchItems, deleteItem } from '../actions/items';
+import DeleteList from './DeleteList';
 import style from './Delete.scss';
 
 const Delete = props => {
@@ -23,74 +24,6 @@ const Delete = props => {
         props.fetchItems(category);
     };
 
-    const render = {
-        books: content => {
-            return (
-                <table cellSpacing="0">
-                    <tbody>
-                        <tr>
-                            <th>Delete: </th>
-                            <th>Title: </th>
-                            <th>Genre: </th>
-                            <th>Price: </th>
-                        </tr>
-                        {content.map(book => (
-                            <tr key={`${book.title}row`}>
-                                <td>
-                                    <button
-                                        onClick={handleDeleteItem}
-                                        type="button"
-                                        id={book.id}
-                                    >
-                                        X
-                                    </button>
-                                </td>
-                                <td key={book.title}>{book.title}</td>
-                                <td key={book.title + book.genre}>
-                                    {book.genre}
-                                </td>
-                                <td
-                                    className={style.bookPrice}
-                                    key={book.title + book.price}
-                                >
-                                    {book.price} {book.currency}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            );
-        },
-        genres: content => {
-            return (
-                <table cellSpacing="0">
-                    <tbody>
-                        <tr>
-                            <th>Delete: </th>
-                            <th>Genre: </th>
-                        </tr>
-                        {content.map(genre => (
-                            <tr key={`${genre.name}row`}>
-                                <td>
-                                    <button
-                                        onClick={handleDeleteItem}
-                                        type="button"
-                                        id={genre.id}
-                                    >
-                                        X
-                                    </button>
-                                </td>
-                                <td key={genre.title + genre.genre}>
-                                    {genre.name}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            );
-        }
-    };
-
     const itemsLoading = isBooks ? booksLoading : genresLoading;
 
     const content = {
@@ -101,7 +34,13 @@ const Delete = props => {
     return (
         <div className={style.deleteContainer}>
             <h2 className={style.deleteHeader}>Delete {category}</h2>
-            {itemsLoading ? <div>Loading...</div> : render[category](content[category])}
+            {itemsLoading ? <div>Loading...</div>
+                : <DeleteList
+                    content={content}
+                    handleDeleteItem={handleDeleteItem}
+                    category={category}
+                />
+            }
         </div>
     );
 };

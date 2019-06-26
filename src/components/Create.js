@@ -8,6 +8,10 @@ import CreateForm from './CreateForm';
 import style from './Create.scss';
 
 const Create = props => {
+    const { match, genres, genresLoading } = props;
+    const { params } = match;
+    const { category } = params;
+
     const defaultBookValues = {
         title: '',
         price: '',
@@ -17,12 +21,10 @@ const Create = props => {
     const defaultGenreValues = {
         genreName: ''
     };
+
     const [bookValues, setBookValues] = useState(defaultBookValues);
     const [genreValues, setGenreValues] = useState(defaultGenreValues);
-    const [error, setError] = useState(false);
-    const { match, genres, genresLoading } = props;
-    const { params } = match;
-    const { category } = params;
+    const [hasDuplicateError, setHasDuplicateError] = useState(false);
     const isBooks = category === 'books';
 
     useLayoutEffect(() => {
@@ -50,7 +52,7 @@ const Create = props => {
                 genre => genre.name.toLowerCase() === genreValues.genreName
             ) !== -1
         ) {
-            setError(true);
+            setHasDuplicateError(true);
         } else {
             props.createItem(category, genreValues);
             setGenreValues(defaultGenreValues);
@@ -58,7 +60,7 @@ const Create = props => {
     };
 
     const handleInputChange = event => {
-        setError(false);
+        setHasDuplicateError(false);
 
         if (isBooks) {
             setBookValues({
@@ -88,7 +90,7 @@ const Create = props => {
                     handleInputChange={handleInputChange}
                 />
             )}
-            {error && (
+            {hasDuplicateError && (
                 <div className={style.error}>
                     Genre already exists. Please try another.
                 </div>

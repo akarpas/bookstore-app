@@ -97,8 +97,8 @@ export default CreateForm;
 CreateForm.propTypes = {
     category: PropTypes.string,
     handleInputChange: PropTypes.func,
-    bookValues: PropTypes.array,
-    genreValues: PropTypes.array,
+    bookValues: PropTypes.object,
+    genreValues: PropTypes.object,
     genres: PropTypes.array,
     submit: PropTypes.func
 };

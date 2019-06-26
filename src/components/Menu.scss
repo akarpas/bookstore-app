@@ -1,7 +1,9 @@
 .menuContainer {
     display: flex;
     flex-flow: column;
-    width: 100%;
+    background-color: white;
+    height: 100%;
+    padding: 0 10px;
 }
 
 .icons {
@@ -11,7 +13,7 @@
 }
 
 .title {
-    width: 50px;
+    width: 70px;
 }
 
 .left,
@@ -89,5 +91,8 @@ a>img {
     }
     a>img {
         height: 30px;
+    }
+    .title {
+        width: auto;
     }
 }

@@ -34,8 +34,8 @@ const setLoading = (state, category) => {
 const deleteItem = (state, payload, category) => {
     const list = `${category}List`;
     const currentItems = state[list].slice(0);
-    const newItems = currentItems.filter(item =>
-        Number(item.id) !== Number(payload)
+    const newItems = currentItems.filter(
+        item => Number(item.id) !== Number(payload)
     );
     return { ...state, [list]: newItems };
 };
@@ -44,7 +44,9 @@ const updateItem = (state, payload, category) => {
     const list = `${category}List`;
     const { id } = payload;
     const currentItems = state[list].slice(0);
-    const index = currentItems.findIndex((item => Number(item.id) === Number(id)));
+    const index = currentItems.findIndex(
+        item => Number(item.id) === Number(id)
+    );
     currentItems[index] = payload;
     return { ...state, [list]: currentItems };
 };
@@ -55,40 +57,42 @@ const createItem = (state, payload, category) => {
     const currentItems = state[list].slice(0);
     const itemIds = currentItems.map(item => item.id);
     const lastId = Math.max.apply(null, itemIds);
-    currentItems.push(isBooks
-        ? { ...payload, id: String(lastId + 1) }
-        : {
-            nameId: toCamelCase(payload.genreName),
-            name: capitalize.words(payload.genreName),
-            id: String(lastId + 1)
-        }
+    currentItems.push(
+        isBooks
+            ? { ...payload, id: String(lastId + 1) }
+            : {
+                nameId: toCamelCase(payload.genreName),
+                name: capitalize.words(payload.genreName),
+                id: String(lastId + 1)
+            }
     );
     return { ...state, [list]: currentItems };
 };
 
-export default (state = INITIAL_STATE, action) => { // eslint-disable-line
+export default (state = INITIAL_STATE, action) => {
+    // eslint-disable-line
     switch (action.type) {
-    case SET_BOOKS:
-    case SET_GENRES:
-        return setItems(state, action.category);
-    case BOOKS_LOADING:
-    case GENRES_LOADING:
-        return setLoading(state, action.category);
-    case DELETE_BOOK:
-    case DELETE_GENRE:
-        return deleteItem(state, action.payload, action.category);
-    case UPDATE_BOOK:
-    case UPDATE_GENRE:
-        return updateItem(state, action.payload, action.category);
-    case CREATE_BOOK:
-    case CREATE_GENRE:
-        return createItem(state, action.payload, action.category);
-    default:
-        return state;
+        case SET_BOOKS:
+        case SET_GENRES:
+            return setItems(state, action.category);
+        case BOOKS_LOADING:
+        case GENRES_LOADING:
+            return setLoading(state, action.category);
+        case DELETE_BOOK:
+        case DELETE_GENRE:
+            return deleteItem(state, action.payload, action.category);
+        case UPDATE_BOOK:
+        case UPDATE_GENRE:
+            return updateItem(state, action.payload, action.category);
+        case CREATE_BOOK:
+        case CREATE_GENRE:
+            return createItem(state, action.payload, action.category);
+        default:
+            return state;
     }
-}
+};
 
-export const getBooksLoading = (state) => state.items.booksLoading;
-export const getGenresLoading = (state) => state.items.genresLoading;
-export const getBooks = (state) => state.items.booksList;
-export const getGenres = (state) => state.items.genresList;
+export const getBooksLoading = state => state.items.booksLoading;
+export const getGenresLoading = state => state.items.genresLoading;
+export const getBooks = state => state.items.booksList;
+export const getGenres = state => state.items.genresList;

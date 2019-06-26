@@ -33,16 +33,14 @@ const setLoading = (state, category) => {
 };
 
 const deleteItem = (state, payload, category) => {
-    const list = `${category}List`;
-    const currentItems = state[list].slice(0);
+    const currentItems = state[category].slice(0);
     const newItems = currentItems.filter(
         item => Number(item.id) !== Number(payload)
     );
-    return { ...state, [list]: newItems };
+    return { ...state, [category]: newItems };
 };
 
 const updateItem = (state, payload, category) => {
-    const list = `${category}List`;
     const { id } = payload;
     const previousGenre = state.genres.find(
         genre => String(genre.id) === String(id)
@@ -56,18 +54,17 @@ const updateItem = (state, payload, category) => {
         }
         return book;
     });
-    const currentItems = state[list].slice(0);
+    const currentItems = state[category].slice(0);
     const index = currentItems.findIndex(
         item => Number(item.id) === Number(id)
     );
     currentItems[index] = payload;
-    return { ...state, books: updatedBooks, [list]: currentItems };
+    return { ...state, books: updatedBooks, [category]: currentItems };
 };
 
 const createItem = (state, payload, category) => {
-    const list = `${category}List`;
     const isBooks = category === 'books';
-    const currentItems = state[list].slice(0);
+    const currentItems = state[category].slice(0);
     const itemIds = currentItems.map(item => item.id);
     const lastId = Math.max.apply(null, itemIds);
     currentItems.push(
@@ -79,7 +76,7 @@ const createItem = (state, payload, category) => {
                 id: String(lastId + 1)
             }
     );
-    return { ...state, [list]: currentItems };
+    return { ...state, [category]: currentItems };
 };
 
 export default (state = INITIAL_STATE, action) => {

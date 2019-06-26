@@ -37,16 +37,47 @@ const ViewList = props => {
         genres: items => {
             return (
                 <table>
-                    <tbody>
-                        <tr>
-                            <th>Genre: </th>
-                        </tr>
-                        {items.map(genre => (
-                            <tr key={`${genre.name}row`}>
-                                <td key={genre.name}>{genre.name}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                    {items.map(genre => {
+                        const hasBooks =
+                            content.books.findIndex(
+                                book => book.genre === genre.name
+                            ) !== -1;
+
+                        return (
+                            <tbody key={`${genre.name}section`}>
+                                {hasBooks && (
+                                    <tr>
+                                        <th className={style.genreTitle}>
+                                            {genre.name}
+                                        </th>
+                                    </tr>
+                                )}
+                                {content.books
+                                    .filter(
+                                        item =>
+                                            item.genre.toLowerCase() ===
+                                            genre.name.toLowerCase()
+                                    )
+                                    .map(book => {
+                                        return (
+                                            <tr key={`${book.title}row`}>
+                                                <td key={book.title}>
+                                                    {book.title}
+                                                </td>
+                                                <td
+                                                    className={style.bookPrice}
+                                                    key={
+                                                        book.title + book.price
+                                                    }
+                                                >
+                                                    {book.price} {book.currency}
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                            </tbody>
+                        );
+                    })}
                 </table>
             );
         }

@@ -19,10 +19,6 @@ const View = props => {
         props.fetchItems(category);
     }, []);
 
-    useEffect(() => {
-        props.fetchItems(category);
-    }, [category]);
-
     const content = {
         books,
         genres

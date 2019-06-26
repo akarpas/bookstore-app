@@ -27,7 +27,16 @@
 @media screen and (min-width: 800px) {
     .itemSection {
         flex-flow: row;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        width: 80%;
+        min-width: 80%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .itemSection {
+        width: 65%;
+        min-width: 65%;
     }
 }

@@ -3,14 +3,14 @@
         {
             "id": "1",
             "title": "1984",
-            "genre": "Sciene Fiction",
+            "genre": "Science Fiction",
             "price": 5,
             "currency": "eur"
         },
         {
             "id": "2",
             "title": "Brave New World",
-            "genre": "Sciene Fiction",
+            "genre": "Science Fiction",
             "price": 7,
             "currency": "eur"
         },

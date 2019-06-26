@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-    getBooksLoading, getGenresLoading, getBooks, getGenres,
+    getBooksLoading, getGenresLoading, getBooks, getGenres
 } from '../reducers/items';
 import { fetchItems, deleteItem } from '../actions/items';
 import DeleteList from './DeleteList';

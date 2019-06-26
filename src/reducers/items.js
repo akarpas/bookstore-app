@@ -1,5 +1,6 @@
 import toCamelCase from 'to-camel-case';
 import capitalize from 'capitalize';
+import cloneDeep from 'lodash.clonedeep';
 
 import {
     SET_BOOKS,
@@ -43,12 +44,24 @@ const deleteItem = (state, payload, category) => {
 const updateItem = (state, payload, category) => {
     const list = `${category}List`;
     const { id } = payload;
+    const previousGenre = state.genresList.find(
+        genre => String(genre.id) === String(id)
+    );
+    const currentBooks = cloneDeep(state.booksList);
+    const updatedBooks = currentBooks.map(book => {
+        if (book.genre === previousGenre.name) {
+            const newBook = book;
+            newBook.genre = payload.name;
+            return newBook;
+        }
+        return book;
+    });
     const currentItems = state[list].slice(0);
     const index = currentItems.findIndex(
         item => Number(item.id) === Number(id)
     );
     currentItems[index] = payload;
-    return { ...state, [list]: currentItems };
+    return { ...state, booksList: updatedBooks, [list]: currentItems };
 };
 
 const createItem = (state, payload, category) => {

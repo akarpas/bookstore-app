@@ -19,11 +19,11 @@ module.exports = [
     {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         exclude: /node_modules/,
-        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+        loader: "url-loader?mimetype=application/octet-stream"
     },
     {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        use: ["url-loader?limit=10000", "img-loader"]
+        use: ["url-loader", "img-loader"]
     },
     {
         test: /\.s(a|c)ss$/,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -25,9 +25,13 @@ const Create = props => {
     const { category } = params;
     const isBooks = category === 'books';
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         props.fetchItems('genres');
     }, []);
+
+    useLayoutEffect(() => {
+        props.fetchItems('genres');
+    }, [category]);
 
     const submit = event => {
         event.preventDefault();

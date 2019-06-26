@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,13 +18,14 @@ const Update = props => {
         { books: cloneBooks, genres: cloneGenres } || []
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         props.fetchItems(category);
     }, []);
 
-    useEffect(() => {
-        props.fetchItems(category);
-        setItemValues({ books: cloneBooks, genres: cloneGenres });
+    useLayoutEffect(() => {
+        props.fetchItems(category).then(() => {
+            setItemValues({ books: cloneBooks, genres: cloneGenres });
+        });
     }, [category]);
 
     const handleInputChange = event => {

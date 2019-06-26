@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,9 +15,13 @@ const View = props => {
     const { category } = params;
     const isBooks = category === 'books';
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         props.fetchItems(category);
     }, []);
+
+    useLayoutEffect(() => {
+        props.fetchItems(category);
+    }, [category]);
 
     const content = {
         books,

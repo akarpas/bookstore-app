@@ -1,11 +1,15 @@
 .createContainer {
+    align-items: center;
     display: flex;
     flex-flow: column;
     justify-content: center;
-    align-items: center;
     width: 100%;
 }
 
 .error {
     color: lightcoral;
+}
+
+.success {
+    color: rgb(117, 156, 169);
 }

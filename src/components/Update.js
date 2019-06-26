@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
+import {
+    getBooksLoading, getGenresLoading, getBooks, getGenres,
+} from '../reducers/items';
 import { fetchItems, updateItem } from '../actions/items';
 import UpdateForm from './UpdateForm';
 import style from './Update.scss';
@@ -71,10 +74,10 @@ const Update = props => {
 
 const mapStateToProps = state => {
     return {
-        books: state.items.booksList,
-        booksLoading: state.items.booksLoading,
-        genres: state.items.genresList,
-        genresLoading: state.items.genresLoading
+        books: getBooks(state),
+        booksLoading: getBooksLoading(state),
+        genres: getGenres(state),
+        genresLoading: getGenresLoading(state)
     };
 };
 

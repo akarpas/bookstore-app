@@ -18,9 +18,9 @@ import initialBooks from '../data/initialBooks.json';
 import initialGenres from '../data/initialGenres.json';
 
 const INITIAL_STATE = {
-    booksList: initialBooks.books,
+    books: initialBooks.books,
     booksLoading: false,
-    genresList: initialGenres.genres,
+    genres: initialGenres.genres,
     genresLoading: false
 };
 
@@ -44,10 +44,10 @@ const deleteItem = (state, payload, category) => {
 const updateItem = (state, payload, category) => {
     const list = `${category}List`;
     const { id } = payload;
-    const previousGenre = state.genresList.find(
+    const previousGenre = state.genres.find(
         genre => String(genre.id) === String(id)
     );
-    const currentBooks = cloneDeep(state.booksList);
+    const currentBooks = cloneDeep(state.books);
     const updatedBooks = currentBooks.map(book => {
         if (book.genre === previousGenre.name) {
             const newBook = book;
@@ -61,7 +61,7 @@ const updateItem = (state, payload, category) => {
         item => Number(item.id) === Number(id)
     );
     currentItems[index] = payload;
-    return { ...state, booksList: updatedBooks, [list]: currentItems };
+    return { ...state, books: updatedBooks, [list]: currentItems };
 };
 
 const createItem = (state, payload, category) => {
@@ -106,5 +106,5 @@ export default (state = INITIAL_STATE, action) => {
 
 export const getBooksLoading = state => state.items.booksLoading;
 export const getGenresLoading = state => state.items.genresLoading;
-export const getBooks = state => state.items.booksList;
-export const getGenres = state => state.items.genresList;
+export const getBooks = state => state.items.books;
+export const getGenres = state => state.items.genres;

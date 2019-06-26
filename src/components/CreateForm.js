@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import style from './CreateForm.scss';
 
 const CreateForm = props => {
-    const { category, handleInputChange, bookValues, genreValues, genres, submit } = props;
-
-    // useEffect(() => {
-    //     props.fetchItems('genres');
-    // }, []);
-
+    const {
+        category,
+        handleInputChange,
+        bookValues,
+        genreValues,
+        genres,
+        submit
+    } = props;
 
     const render = {
         books: () => {
@@ -32,11 +34,15 @@ const CreateForm = props => {
                             onChange={handleInputChange}
                             id="genre"
                         >
-                            {genres.map(genre =>
-                                <option key={genre.id + genre.nameId} value={genre.nameId}>
+                            {genres.map(genre => (
+                                <option
+                                    key={genre.id + genre.nameId}
+                                    value={genre.nameId}
+                                >
                                     {genre.name}
                                 </option>
-                            )})
+                            ))}
+                            )
                         </select>
                     </label>
                     <label htmlFor="price">
@@ -86,7 +92,7 @@ const CreateForm = props => {
     return render[category]();
 };
 
-export default CreateForm
+export default CreateForm;
 
 CreateForm.propTypes = {
     genres: PropTypes.array,

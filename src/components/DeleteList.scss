@@ -1,0 +1,21 @@
+table {
+    border-collapse: collapse;
+    padding: 0;
+    width: 95%;
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+th, tr, td {
+    text-align: center;
+    width: auto;
+}
+
+.bookPrice {
+    text-transform: uppercase;
+}

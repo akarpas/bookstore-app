@@ -42,6 +42,7 @@ const Update = props => {
     };
 
     const handleUpdateItem = event => {
+        event.preventDefault();
         const { id } = event.target;
         const itemToUpdate = itemValues[category].find(
             item => Number(item.id) === Number(id)

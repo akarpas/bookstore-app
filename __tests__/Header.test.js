@@ -1,26 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { BrowserRouter } from 'react-router-dom';
+import { shallow } from 'enzyme';
 import Header from '../src/components/Header';
 import Menu from '../src/components/Menu';
 import Logo from '../src/components/Logo';
 
-let wrapper;
-
-beforeEach(() => {
-    wrapper = mount(
-        <BrowserRouter>
-            <Header />
-        </BrowserRouter>
-    );
-});
-
-afterEach(() => {
-    wrapper.unmount();
-});
+const wrapper = shallow(<Header />);
 
 it('renders without crashing', () => {
-    wrapper.render();
+    expect(wrapper).toBeTruthy();
 });
 
 it('contains a logo component', () => {

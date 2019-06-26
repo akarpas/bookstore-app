@@ -6,6 +6,7 @@ import {
     getGenresLoading, getGenres,
 } from '../reducers/items';
 import { createItem, fetchItems } from '../actions/items';
+import CreateForm from './CreateForm';
 import style from './Create.scss';
 
 const Create = props => {
@@ -56,82 +57,19 @@ const Create = props => {
         }
     };
 
-    const render = {
-        books: () => {
-            return (
-                <form className={style.createForm} onSubmit={submit}>
-                    <label htmlFor="title">
-                        Title:
-                        <input
-                            value={bookValues.title}
-                            required
-                            onChange={handleInputChange}
-                            id="title"
-                            type="text"
-                        />
-                    </label>
-                    <label htmlFor="genre">
-                        Genre:
-                        <select
-                            value={bookValues.genre}
-                            onChange={handleInputChange}
-                            id="genre"
-                        >
-                            {genres.map(genre =>
-                                <option key={genre.id + genre.nameId} value={genre.nameId}>
-                                    {genre.name}
-                                </option>
-                            )})
-                        </select>
-                    </label>
-                    <label htmlFor="price">
-                        Price:
-                        <input
-                            value={bookValues.price}
-                            required
-                            onChange={handleInputChange}
-                            id="price"
-                            type="number"
-                        />
-                    </label>
-                    <label htmlFor="currency">
-                        Currency:
-                        <select
-                            value={bookValues.currency}
-                            onChange={handleInputChange}
-                            id="currency"
-                        >
-                            <option value="eur">EUR</option>
-                            <option value="usd">USD</option>
-                        </select>
-                    </label>
-                    <button type="submit">Create</button>
-                </form>
-            );
-        },
-        genres: () => {
-            return (
-                <form className={style.createForm} onSubmit={submit}>
-                    <label htmlFor="title">
-                        Name:
-                        <input
-                            value={genreValues.genreName}
-                            required
-                            onChange={handleInputChange}
-                            id="genreName"
-                            type="text"
-                        />
-                    </label>
-                    <button type="submit">Create</button>
-                </form>
-            );
-        }
-    };
-
     return (
         <div className={style.createContainer}>
             <h2>Create a {category.substring(0, category.length - 1)}</h2>
-            {genresLoading ? <div>Loading...</div> : render[category]()}
+            {genresLoading
+                ? <div>Loading...</div>
+                : <CreateForm
+                    category={category}
+                    genreValues={genreValues}
+                    bookValues={bookValues}
+                    genres={genres}
+                    submit={submit}
+                    handleInputChange={handleInputChange}
+                />}
         </div>
     );
 };

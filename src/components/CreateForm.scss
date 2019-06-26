@@ -1,0 +1,22 @@
+.createForm {
+    display: flex;
+    flex-flow: column;
+    width: 60%;
+}
+
+.createContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.createForm > label > input,
+.createForm > label > select, {
+    width: 100%;
+}
+
+.createForm > label > input {
+    text-transform: capitalize;
+}

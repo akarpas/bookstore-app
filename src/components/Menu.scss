@@ -13,6 +13,9 @@
 }
 
 .title {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
     width: 70px;
 }
 

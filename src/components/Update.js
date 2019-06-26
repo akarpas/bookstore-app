@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
-import { fetchItems, updateItem, setLoading } from '../actions/items';
+import { fetchItems, updateItem } from '../actions/items';
 import UpdateForm from './UpdateForm';
 import style from './Update.scss';
 
@@ -20,14 +20,10 @@ const Update = props => {
 
     useEffect(() => {
         props.fetchItems(category);
-        return () => {
-            props.setLoading();
-        };
     }, []);
 
     useEffect(() => {
         props.fetchItems(category);
-        props.setLoading();
         setItemValues({ books: cloneBooks, genres: cloneGenres });
     }, [category]);
 
@@ -84,8 +80,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchItems: category => dispatch(fetchItems(category)),
-        updateItem: (category, id) => dispatch(updateItem(category, id)),
-        setLoading: () => dispatch(setLoading())
+        updateItem: (category, id) => dispatch(updateItem(category, id))
     };
 };
 
@@ -102,7 +97,6 @@ Update.propTypes = {
     booksLoading: PropTypes.bool,
     books: PropTypes.array,
     fetchItems: PropTypes.func,
-    setLoading: PropTypes.func,
     updateItem: PropTypes.func,
     match: PropTypes.object
 };

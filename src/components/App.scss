@@ -11,13 +11,15 @@ input, select {
     outline: none;
     border: 1px solid darkgray;
     border-radius: 0;
-    height: 20px;
+    height: 30px;
 }
 
 button {
     margin: 5px 0;
     background-color: lightgrey;
     outline: none;
+    height: 30px;
+    min-width: 30px;
 }
 
 .appContainer {

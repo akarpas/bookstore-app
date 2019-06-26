@@ -47,8 +47,3 @@ export const deleteItem = (category, itemId) => dispatch => {
 export const updateItem = (category, item) => dispatch => {
     dispatch(actions.update(category, item));
 };
-
-export const setLoading = () => dispatch => {
-    dispatch(actions.loading('books', true));
-    dispatch(actions.loading('genres', true));
-}

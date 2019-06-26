@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getGenresLoading, getGenres } from '../reducers/items';
-import { createItem, fetchItems, setLoading } from '../actions/items';
+import { createItem, fetchItems } from '../actions/items';
 import CreateForm from './CreateForm';
 import style from './Create.scss';
 
@@ -27,14 +27,7 @@ const Create = props => {
 
     useEffect(() => {
         props.fetchItems('genres');
-        return () => {
-            props.setLoading();
-        };
     }, []);
-
-    useEffect(() => {
-        props.setLoading();
-    }, [category]);
 
     const submit = event => {
         event.preventDefault();
@@ -110,8 +103,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchItems: category => dispatch(fetchItems(category)),
-        createItem: (category, item) => dispatch(createItem(category, item)),
-        setLoading: () => dispatch(setLoading())
+        createItem: (category, item) => dispatch(createItem(category, item))
     };
 };
 
@@ -127,6 +119,5 @@ Create.propTypes = {
     genresLoading: PropTypes.bool,
     fetchItems: PropTypes.func,
     createItem: PropTypes.func,
-    setLoading: PropTypes.func,
     match: PropTypes.object
 };

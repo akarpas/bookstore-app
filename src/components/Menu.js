@@ -23,26 +23,6 @@ const MENU_OPTIONS = [
 ];
 
 const Menu = () => {
-    // const [isShowSubMenu, setIsShowSubMenu] = useState({
-    //     books: false,
-    //     genres: false
-    // });
-
-    // const toggleShowSubMenu = event => {
-    //     const { target } = event;
-    //     const { id } = target;
-
-    //     if (id === '') {
-    //         setIsShowSubMenu({ books: false, genres: false });
-    //     } else {
-    //         setIsShowSubMenu(
-    //             id === 'books'
-    //                 ? { books: !isShowSubMenu[id], genres: false }
-    //                 : { genres: !isShowSubMenu[id], books: false }
-    //         );
-    //     }
-    // };
-
     return (
         <div className={style.menuContainer}>
             <div className={style.left}>

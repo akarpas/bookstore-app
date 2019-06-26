@@ -1,7 +1,9 @@
 .menuContainer {
     display: flex;
     flex-flow: column;
-    width: 100%;
+    background-color: white;
+    height: 100%;
+    padding: 0 10px;
 }
 
 .icons {
@@ -11,14 +13,17 @@
 }
 
 .title {
-    width: 50px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 70px;
 }
 
 .left,
 .right {
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .menuCategory {
@@ -71,7 +76,7 @@
 }
 
 a>img {
-    height: 20px;
+    height: 27.5px;
 }
 
 @media screen and (min-width: 800px) {
@@ -89,5 +94,8 @@ a>img {
     }
     a>img {
         height: 30px;
+    }
+    .title {
+        width: auto;
     }
 }

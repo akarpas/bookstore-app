@@ -46,137 +46,93 @@ const Update = props => {
 
     const render = {
         books: content => {
-            return (
-                <table cellSpacing="0">
-                    <tbody>
-                        <tr>
-                            <th>Update: </th>
-                            <th>Title: </th>
-                            <th>Genre: </th>
-                            <th>Price: </th>
-                            <th>Currency: </th>
-                        </tr>
-                        {content.map((book, index) => {
-                            const hasUpdates =
-                                content[index].title !== books[index].title ||
-                                content[index].price !== books[index].price ||
-                                content[index].genre !== books[index].genre ||
-                                content[index].currency !==
-                                    books[index].currency;
+            return content.map((book, index) => {
+                const hasUpdates =
+                    content[index].title !== books[index].title ||
+                    content[index].price !== books[index].price ||
+                    content[index].genre !== books[index].genre ||
+                    content[index].currency !== books[index].currency;
 
-                            return (
-                                <tr key={`${index}row`}>
-                                    <td>
-                                        <button
-                                            className={
-                                                hasUpdates
-                                                    ? style.buttonUpdate
-                                                    : style.button
-                                            }
-                                            onClick={handleUpdateItem}
-                                            type="button"
-                                            id={book.id}
-                                        >
-                                            Update
-                                        </button>
-                                    </td>
-                                    <td key={`${index}title`}>
-                                        <input
-                                            onChange={handleInputChange}
-                                            id={`title-${book.id}`}
-                                            type="text"
-                                            value={book.title}
-                                        />
-                                    </td>
-                                    <td key={`${index}genre`}>
-                                        <select
-                                            value={book.genre}
-                                            onChange={handleInputChange}
-                                            id={`genre-${book.id}`}
-                                        >
-                                            <option value="scienceFiction">
-                                                Science Fiction
-                                            </option>
-                                            <option value="mystery">
-                                                Mystery
-                                            </option>
-                                            <option value="romance">
-                                                Romance
-                                            </option>
-                                            <option value="horror">
-                                                Horror
-                                            </option>
-                                        </select>
-                                    </td>
-                                    <td key={`${index}price`}>
-                                        <input
-                                            onChange={handleInputChange}
-                                            id={`price-${book.id}`}
-                                            type="number"
-                                            value={book.price}
-                                        />
-                                    </td>
-                                    <td
-                                        className={style.bookPrice}
-                                        key={`${index}currency`}
-                                    >
-                                        <select
-                                            value={book.currency}
-                                            onChange={handleInputChange}
-                                            id={`currency-${book.id}`}
-                                        >
-                                            <option value="eur">EUR</option>
-                                            <option value="usd">USD</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            );
+                return (
+                    <div key={`${index}bookSection`} className={style.itemSection}>
+                        <input
+                            key={`${index}bookTitle`}
+                            onChange={handleInputChange}
+                            id={`title-${book.id}`}
+                            type="text"
+                            value={book.title}
+                        />
+                        <select
+                            key={`${index}bookGenre`}
+                            value={book.genre}
+                            onChange={handleInputChange}
+                            id={`genre-${book.id}`}
+                        >
+                            <option value="scienceFiction">
+                                Science Fiction
+                            </option>
+                            <option value="mystery">Mystery</option>
+                            <option value="romance">Romance</option>
+                            <option value="horror">Horror</option>
+                        </select>
+                        <input
+                            key={`${index}bookPrice`}
+                            onChange={handleInputChange}
+                            id={`price-${book.id}`}
+                            type="number"
+                            value={book.price}
+                        />
+                        <select
+                            key={`${index}bookCurrency`}
+                            value={book.currency}
+                            onChange={handleInputChange}
+                            id={`currency-${book.id}`}
+                        >
+                            <option value="eur">EUR</option>
+                            <option value="usd">USD</option>
+                        </select>
+                        <button
+                            key={`${index}bookButton`}
+                            className={
+                                hasUpdates ? style.buttonUpdate : style.button
+                            }
+                            onClick={handleUpdateItem}
+                            type="button"
+                            id={book.id}
+                        >
+                            Update
+                        </button>
+                    </div>
+                );
+            });
         },
         genres: content => {
-            return (
-                <table cellSpacing="0">
-                    <tbody>
-                        <tr>
-                            <th>Update: </th>
-                            <th>Genre: </th>
-                        </tr>
-                        {content.map((genre, index) => {
-                            const hasUpdates =
-                                content[index].name !== genres[index].name;
-                            return (
-                                <tr key={`${index}row`}>
-                                    <td>
-                                        <button
-                                            className={
-                                                hasUpdates
-                                                    ? style.buttonUpdate
-                                                    : style.button
-                                            }
-                                            onClick={handleUpdateItem}
-                                            type="button"
-                                            id={genre.id}
-                                        >
-                                            Update
-                                        </button>
-                                    </td>
-                                    <td key={`${index}genre`}>
-                                        <input
-                                            onChange={handleInputChange}
-                                            id={`name-${genre.id}`}
-                                            type="text"
-                                            value={genre.name}
-                                        />
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            );
+            return content.map((genre, index) => {
+                const hasUpdates = content[index].name !== genres[index].name;
+
+                return (
+                    <div key={`${index}genreSection`} className={style.itemSection}>
+                        <input
+                            key={`${index}genreName`}
+                            onChange={handleInputChange}
+                            id={`name-${genre.id}`}
+                            type="text"
+                            value={genre.name}
+                        />
+                        <button
+                            key={`${index}genreButton`}
+                            className={
+                                hasUpdates ? style.buttonUpdate : style.button
+                            }
+                            onClick={handleUpdateItem}
+                            type="button"
+                            id={genre.id}
+                        >
+                            Update
+                        </button>
+                    </div>
+                );
+            });
         }
     };
 

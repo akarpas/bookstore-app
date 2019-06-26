@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { compare } from '../utils/compare';
 import style from './ViewList.scss';
 
 const ViewList = props => {
@@ -16,7 +16,7 @@ const ViewList = props => {
                             <th>Genre: </th>
                             <th>Price: </th>
                         </tr>
-                        {items.map(book => (
+                        {items.sort(compare).map(book => (
                             <tr key={`${book.title}row`}>
                                 <td key={book.title}>{book.title}</td>
                                 <td key={book.title + book.genre}>
@@ -37,7 +37,7 @@ const ViewList = props => {
         genres: items => {
             return (
                 <table>
-                    {items.map(genre => {
+                    {items.sort(compare).map(genre => {
                         const hasBooks =
                             content.books.findIndex(
                                 book => book.genre === genre.name
@@ -53,6 +53,7 @@ const ViewList = props => {
                                     </tr>
                                 )}
                                 {content.books
+                                    .sort(compare)
                                     .filter(
                                         item =>
                                             item.genre.toLowerCase() ===

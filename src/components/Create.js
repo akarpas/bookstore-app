@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import capitalize from 'capitalize';
 import { getGenresLoading, getGenres } from '../reducers/items';
 import { createItem, fetchItems } from '../actions/items';
 import CreateForm from './CreateForm';
 import style from './Create.scss';
 
 const Create = props => {
+    const { match, genres, genresLoading } = props;
+    const { params } = match;
+    const { category } = params;
+
     const defaultBookValues = {
         title: '',
         price: '',
@@ -17,17 +22,26 @@ const Create = props => {
     const defaultGenreValues = {
         genreName: ''
     };
+
     const [bookValues, setBookValues] = useState(defaultBookValues);
     const [genreValues, setGenreValues] = useState(defaultGenreValues);
-    const [error, setError] = useState(false);
-    const { match, genres, genresLoading } = props;
-    const { params } = match;
-    const { category } = params;
+    const [hasDuplicateError, setHasDuplicateError] = useState(false);
+    const [hasCreatedSuccessfully, setHasCreatedSuccessfully] = useState(false);
     const isBooks = category === 'books';
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         props.fetchItems('genres');
     }, []);
+
+    useLayoutEffect(() => {
+        props.fetchItems('genres');
+        resetMessages(); // eslint-disable-line
+    }, [category]);
+
+    const resetMessages = () => {
+        setHasDuplicateError(false);
+        setHasCreatedSuccessfully(false);
+    };
 
     const submit = event => {
         event.preventDefault();
@@ -41,20 +55,24 @@ const Create = props => {
                 genre: genreName.name
             });
             setBookValues(defaultBookValues);
+            setHasCreatedSuccessfully(true);
         } else if (
             genres.findIndex(
-                genre => genre.name.toLowerCase() === genreValues.genreName
+                genre =>
+                    genre.name.toLowerCase() ===
+                    genreValues.genreName.toLowerCase()
             ) !== -1
         ) {
-            setError(true);
+            setHasDuplicateError(true);
         } else {
             props.createItem(category, genreValues);
             setGenreValues(defaultGenreValues);
+            setHasCreatedSuccessfully(true);
         }
     };
 
     const handleInputChange = event => {
-        setError(false);
+        resetMessages();
 
         if (isBooks) {
             setBookValues({
@@ -84,9 +102,16 @@ const Create = props => {
                     handleInputChange={handleInputChange}
                 />
             )}
-            {error && (
+            {hasDuplicateError && (
                 <div className={style.error}>
-                    Genre already exists. Please try another.
+                    {capitalize(category.slice(0, category.length - 1))} already
+                    exists. Please try another.
+                </div>
+            )}
+            {hasCreatedSuccessfully && (
+                <div className={style.success}>
+                    {capitalize(category.slice(0, category.length - 1))} created
+                    successfully!
                 </div>
             )}
         </div>

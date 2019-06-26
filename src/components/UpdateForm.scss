@@ -18,10 +18,19 @@
 
 .itemSection > input,
 .itemSection > select {
+    display: flex;
+    flex-flow: column;
     outline: none;
     border: 1px solid darkgray;
     border-radius: 0;
     height: 20px;
+}
+
+.itemSection > form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 100%;
 }
 
 @media screen and (min-width: 800px) {
@@ -31,6 +40,11 @@
         align-items: center;
         width: 80%;
         min-width: 80%;
+    }
+    .itemSection > form {
+        flex-flow: row;
+        justify-content: space-around;
+        align-items: center;
     }
 }
 

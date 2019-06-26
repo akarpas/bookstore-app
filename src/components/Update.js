@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
+import {
+    getBooksLoading, getGenresLoading, getBooks, getGenres,
+} from '../reducers/items';
 import { fetchItems, updateItem } from '../actions/items';
 import UpdateForm from './UpdateForm';
 import style from './Update.scss';
@@ -18,13 +21,14 @@ const Update = props => {
         { books: cloneBooks, genres: cloneGenres } || []
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         props.fetchItems(category);
     }, []);
 
-    useEffect(() => {
-        props.fetchItems(category);
-        setItemValues({ books: cloneBooks, genres: cloneGenres });
+    useLayoutEffect(() => {
+        props.fetchItems(category).then(() => {
+            setItemValues({ books: cloneBooks, genres: cloneGenres });
+        });
     }, [category]);
 
     const handleInputChange = event => {
@@ -38,6 +42,7 @@ const Update = props => {
     };
 
     const handleUpdateItem = event => {
+        event.preventDefault();
         const { id } = event.target;
         const itemToUpdate = itemValues[category].find(
             item => Number(item.id) === Number(id)
@@ -70,10 +75,10 @@ const Update = props => {
 
 const mapStateToProps = state => {
     return {
-        books: state.items.booksList,
-        booksLoading: state.items.booksLoading,
-        genres: state.items.genresList,
-        genresLoading: state.items.genresLoading
+        books: getBooks(state),
+        booksLoading: getBooksLoading(state),
+        genres: getGenres(state),
+        genresLoading: getGenresLoading(state)
     };
 };
 

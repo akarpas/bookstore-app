@@ -58,9 +58,6 @@ const ViewList = props => {
 export default ViewList;
 
 ViewList.propTypes = {
-    genres: PropTypes.array,
-    genresLoading: PropTypes.bool,
-    fetchItems: PropTypes.func,
-    createItem: PropTypes.func,
-    match: PropTypes.object
+    category: PropTypes.string,
+    content: PropTypes.object
 };

@@ -111,9 +111,10 @@ const UpdateForm = props => {
 export default UpdateForm;
 
 UpdateForm.propTypes = {
-    genres: PropTypes.array,
-    genresLoading: PropTypes.bool,
-    fetchItems: PropTypes.func,
-    createItem: PropTypes.func,
-    match: PropTypes.object
+    category: PropTypes.string,
+    handleInputChange: PropTypes.func,
+    handleUpdateItem: PropTypes.func,
+    books: PropTypes.array,
+    itemValues: PropTypes.object,
+    genres: PropTypes.array
 };

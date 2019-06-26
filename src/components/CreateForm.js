@@ -95,9 +95,10 @@ const CreateForm = props => {
 export default CreateForm;
 
 CreateForm.propTypes = {
+    category: PropTypes.string,
+    handleInputChange: PropTypes.func,
+    bookValues: PropTypes.array,
+    genreValues: PropTypes.array,
     genres: PropTypes.array,
-    genresLoading: PropTypes.bool,
-    fetchItems: PropTypes.func,
-    createItem: PropTypes.func,
-    match: PropTypes.object
+    submit: PropTypes.func
 };

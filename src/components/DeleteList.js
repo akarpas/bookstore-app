@@ -84,9 +84,7 @@ const DeleteList = props => {
 export default DeleteList;
 
 DeleteList.propTypes = {
-    genres: PropTypes.array,
-    genresLoading: PropTypes.bool,
-    fetchItems: PropTypes.func,
-    createItem: PropTypes.func,
-    match: PropTypes.object
+    category: PropTypes.string,
+    content: PropTypes.object,
+    handleDeleteItem: PropTypes.func
 };

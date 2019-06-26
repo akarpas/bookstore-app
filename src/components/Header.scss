@@ -2,11 +2,17 @@
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     width: calc(100% - 20px);
     padding: 10px 10px;
     margin: 10px 0;
     background-color: white;
     color: black;
-    height: 30px;
+    height: 40px;
+}
+
+@media screen and (min-width: 800px) {
+    .headerContainer {
+        height: 60px;
+    }
 }

@@ -1,0 +1,33 @@
+.button {
+    background-color: lightgrey;
+    outline: none;
+}
+
+.buttonUpdate {
+    background-color: lightcoral;
+}
+
+.itemSection {
+    display: flex;
+    flex-flow: column;
+    min-width: 100%;
+    padding: 2px 2px;
+    margin: 5px 0;
+    border: 1px solid black;
+}
+
+.itemSection > input,
+.itemSection > select {
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 0;
+    height: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    .itemSection {
+        flex-flow: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

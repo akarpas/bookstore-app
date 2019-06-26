@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchItems } from '../actions/items';
+import { fetchItems, setLoading } from '../actions/items';
 import {
     getBooksLoading, getGenresLoading, getBooks, getGenres,
 } from '../reducers/items';
@@ -17,10 +17,14 @@ const View = props => {
 
     useEffect(() => {
         props.fetchItems(category);
+        return () => {
+            props.setLoading();
+        };
     }, []);
 
     useEffect(() => {
         props.fetchItems(category);
+        props.setLoading();
     }, [category]);
 
     const content = {
@@ -56,7 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchItems: category => dispatch(fetchItems(category))
+        fetchItems: category => dispatch(fetchItems(category)),
+        setLoading: () => dispatch(setLoading())
     };
 };
 
@@ -73,5 +78,6 @@ View.propTypes = {
     genresLoading: PropTypes.bool,
     genres: PropTypes.array,
     fetchItems: PropTypes.func,
+    setLoading: PropTypes.func,
     match: PropTypes.object
 };

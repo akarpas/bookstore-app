@@ -3,9 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-    getBooksLoading, getGenresLoading, getBooks, getGenres,
+    getBooksLoading, getGenresLoading, getBooks, getGenres
 } from '../reducers/items';
-import { fetchItems, deleteItem } from '../actions/items';
+import { fetchItems, deleteItem, setLoading } from '../actions/items';
 import DeleteList from './DeleteList';
 import style from './Delete.scss';
 
@@ -16,7 +16,14 @@ const Delete = props => {
     const isBooks = category === 'books';
     useEffect(() => {
         props.fetchItems(category);
+        return () => {
+            props.setLoading();
+        };
     }, []);
+
+    useEffect(() => {
+        props.setLoading();
+    }, [category]);
 
     const handleDeleteItem = event => {
         const { id } = event.target;
@@ -57,7 +64,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchItems: category => dispatch(fetchItems(category)),
-        deleteItem: (category, id) => dispatch(deleteItem(category, id))
+        deleteItem: (category, id) => dispatch(deleteItem(category, id)),
+        setLoading: () => dispatch(setLoading())
     };
 };
 
@@ -75,5 +83,6 @@ Delete.propTypes = {
     books: PropTypes.array,
     fetchItems: PropTypes.func,
     deleteItem: PropTypes.func,
+    setLoading: PropTypes.func,
     match: PropTypes.object
 };

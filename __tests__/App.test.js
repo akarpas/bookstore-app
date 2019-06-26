@@ -1,26 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { BrowserRouter } from 'react-router-dom';
+import { shallow } from 'enzyme';
 import App from '../src/components/App';
 import Header from '../src/components/Header';
 import Content from '../src/components/Content';
 
-let wrapper;
-
-beforeEach(() => {
-    wrapper = mount(
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    );
-});
-
-afterEach(() => {
-    wrapper.unmount();
-});
+const wrapper = shallow(<App />);
 
 it('renders without crashing', () => {
-    wrapper.render();
+    expect(wrapper).toBeTruthy();
 });
 
 it('contains a header component', () => {

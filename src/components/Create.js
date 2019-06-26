@@ -49,7 +49,7 @@ const Create = props => {
             setBookValues(defaultBookValues);
         } else if (
             genres.findIndex(
-                genre => genre.name.toLowerCase() === genreValues.genreName
+                genre => genre.name.toLowerCase() === genreValues.genreName.toLowerCase()
             ) !== -1
         ) {
             setHasDuplicateError(true);

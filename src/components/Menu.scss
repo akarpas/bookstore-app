@@ -18,7 +18,7 @@
 .right {
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .menuCategory {
@@ -71,7 +71,7 @@
 }
 
 a>img {
-    height: 20px;
+    height: 27.5px;
 }
 
 @media screen and (min-width: 800px) {

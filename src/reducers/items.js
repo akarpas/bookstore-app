@@ -70,7 +70,6 @@ const createItem = (state, payload, category) => {
 };
 
 export default (state = INITIAL_STATE, action) => {
-    // eslint-disable-line
     switch (action.type) {
         case SET_BOOKS:
         case SET_GENRES:

@@ -66,28 +66,34 @@ describe('shows update books list', () => {
     });
 
     it('includes the three initial book names', () => {
-        const bookIndexes = [1,2,3];
+        const bookIndexes = [1, 2, 3];
 
         bookIndexes.map(bookIndex =>
-            expect(wrapper.find(`#title-${bookIndex}`)
-                .props().value).toEqual(initialBooks[bookIndex - 1].title)
+            expect(wrapper.find(`#title-${bookIndex}`).props().value).toEqual(
+                initialBooks[bookIndex - 1].title
+            )
         );
     });
 
     it('updates form input correctly', () => {
-        const inputId = "#title-1"
+        const inputId = '#title-1';
         const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'title-1' }});
+        input.simulate('change', { target: { value: 'Test', id: 'title-1' } });
         wrapper.update();
         expect(wrapper.find(inputId).props().value).toEqual('Test');
     });
 
     it('changes button color on input change', () => {
-        const inputId = "#title-1";
+        const inputId = '#title-1';
         const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'title-1' }});
+        input.simulate('change', { target: { value: 'Test', id: 'title-1' } });
         wrapper.update();
-        expect(wrapper.find('button').first().hasClass('buttonUpdate')).toEqual(true);
+        expect(
+            wrapper
+                .find('button')
+                .first()
+                .hasClass('buttonUpdate')
+        ).toEqual(true);
     });
 });
 
@@ -129,27 +135,33 @@ describe('shows update genres list', () => {
     });
 
     it('includes the four initial genre names', () => {
-        const genreIndexes = [1,2,3,4];
+        const genreIndexes = [1, 2, 3, 4];
 
         genreIndexes.map(genreIndex =>
-            expect(wrapper.find(`#name-${genreIndex}`)
-                .props().value).toEqual(initialGenres[genreIndex - 1].name)
+            expect(wrapper.find(`#name-${genreIndex}`).props().value).toEqual(
+                initialGenres[genreIndex - 1].name
+            )
         );
     });
 
     it('updates form input correctly', () => {
-        const inputId = "#name-1"
+        const inputId = '#name-1';
         const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'name-1' }});
+        input.simulate('change', { target: { value: 'Test', id: 'name-1' } });
         wrapper.update();
         expect(wrapper.find(inputId).props().value).toEqual('Test');
     });
 
     it('changes button color on input change', () => {
-        const inputId = "#name-1";
+        const inputId = '#name-1';
         const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'name-1' }});
+        input.simulate('change', { target: { value: 'Test', id: 'name-1' } });
         wrapper.update();
-        expect(wrapper.find('button').first().hasClass('buttonUpdate')).toEqual(true);
+        expect(
+            wrapper
+                .find('button')
+                .first()
+                .hasClass('buttonUpdate')
+        ).toEqual(true);
     });
 });

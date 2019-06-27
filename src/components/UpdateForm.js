@@ -51,7 +51,10 @@ const UpdateForm = props => {
                                 id={`genre-${book.id}`}
                             >
                                 {genresCopy.map(genre => (
-                                    <option value={genre.name.toLowerCase()}>
+                                    <option
+                                        key={genre.name.toLowerCase()}
+                                        value={genre.name.toLowerCase()}
+                                    >
                                         {genre.name}
                                     </option>
                                 ))}

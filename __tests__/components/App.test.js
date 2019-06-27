@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../src/components/App';
-import Header from '../src/components/Header';
-import Content from '../src/components/Content';
+import App from '../../src/components/App';
+import Header from '../../src/components/Header';
+import Content from '../../src/components/Content';
 
 const wrapper = shallow(<App />);
 

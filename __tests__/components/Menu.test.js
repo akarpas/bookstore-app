@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Menu from '../src/components/Menu';
+import Menu from '../../src/components/Menu';
 
 const wrapper = shallow(<Menu />);
 

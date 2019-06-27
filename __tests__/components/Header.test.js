@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from '../src/components/Header';
-import Menu from '../src/components/Menu';
-import Logo from '../src/components/Logo';
+import Header from '../../src/components/Header';
+import Menu from '../../src/components/Menu';
+import Logo from '../../src/components/Logo';
 
 const wrapper = shallow(<Header />);
 

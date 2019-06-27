@@ -26,9 +26,8 @@ const Update = props => {
     }, []);
 
     useLayoutEffect(() => {
-        props.fetchItems(category).then(() => {
+        props.fetchItems(category)
             setItemValues({ books: cloneBooks, genres: cloneGenres });
-        });
     }, [category]);
 
     const handleInputChange = event => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import cloneDeep from 'lodash.clonedeep';
+import { compare } from '../utils/compare';
 import style from './UpdateForm.scss';
 
 const UpdateForm = props => {
@@ -15,12 +16,15 @@ const UpdateForm = props => {
 
     const render = {
         books: content => {
-            return content.map((book, index) => {
+            const contentCopy = cloneDeep(content);
+            const booksCopy = cloneDeep(books);
+            return contentCopy.sort(compare).map((book, index) => {
+                const sortedBooks = booksCopy.sort(compare);
                 const hasUpdates =
-                    content[index].title !== books[index].title ||
-                    content[index].price !== books[index].price ||
-                    content[index].genre !== books[index].genre ||
-                    content[index].currency !== books[index].currency;
+                    contentCopy[index].title !== sortedBooks[index].title ||
+                    contentCopy[index].price !== sortedBooks[index].price ||
+                    contentCopy[index].genre !== sortedBooks[index].genre ||
+                    contentCopy[index].currency !== sortedBooks[index].currency;
 
                 return (
                     <div
@@ -71,7 +75,9 @@ const UpdateForm = props => {
                             <button
                                 key={`${index}bookButton`}
                                 className={
-                                    hasUpdates ? style.buttonUpdate : style.button
+                                    hasUpdates
+                                        ? style.buttonUpdate
+                                        : style.button
                                 }
                                 type="submit"
                                 id={book.id}
@@ -84,8 +90,12 @@ const UpdateForm = props => {
             });
         },
         genres: content => {
-            return content.map((genre, index) => {
-                const hasUpdates = content[index].name !== genres[index].name;
+            const contentCopy = cloneDeep(content);
+            const genresCopy = cloneDeep(genres);
+            return contentCopy.sort(compare).map((genre, index) => {
+                const sortedGenres = genresCopy.sort(compare);
+                const hasUpdates =
+                    contentCopy[index].name !== sortedGenres[index].name;
 
                 return (
                     <div

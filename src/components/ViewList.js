@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cloneDeep from 'lodash.clonedeep';
 import { compare } from '../utils/compare';
 import style from './ViewList.scss';
 
@@ -8,6 +9,7 @@ const ViewList = props => {
 
     const render = {
         books: items => {
+            const itemsCopy = cloneDeep(items);
             return (
                 <table>
                     <tbody>
@@ -16,7 +18,7 @@ const ViewList = props => {
                             <th>Genre: </th>
                             <th>Price: </th>
                         </tr>
-                        {items.sort(compare).map(book => (
+                        {itemsCopy.sort(compare).map(book => (
                             <tr key={`${book.title}row`}>
                                 <td key={book.title}>{book.title}</td>
                                 <td key={book.title + book.genre}>
@@ -35,14 +37,15 @@ const ViewList = props => {
             );
         },
         genres: items => {
+            const itemsCopy = cloneDeep(items);
             return (
                 <table>
-                    {items.sort(compare).map(genre => {
+                    {itemsCopy.sort(compare).map(genre => {
                         const hasBooks =
                             content.books.findIndex(
                                 book => book.genre === genre.name
                             ) !== -1;
-
+                        const booksCopy = cloneDeep(content.books);
                         return (
                             <tbody key={`${genre.name}section`}>
                                 {hasBooks && (
@@ -52,7 +55,7 @@ const ViewList = props => {
                                         </th>
                                     </tr>
                                 )}
-                                {content.books
+                                {booksCopy
                                     .sort(compare)
                                     .filter(
                                         item =>

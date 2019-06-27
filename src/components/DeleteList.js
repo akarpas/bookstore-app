@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import cloneDeep from 'lodash.clonedeep';
+import { compare } from '../utils/compare';
 import style from './DeleteList.scss';
 
 const DeleteList = props => {
@@ -12,6 +13,7 @@ const DeleteList = props => {
 
     const render = {
         books: items => {
+            const itemsCopy = cloneDeep(items);
             return (
                 <table cellSpacing="0">
                     <tbody>
@@ -21,7 +23,7 @@ const DeleteList = props => {
                             <th>Genre: </th>
                             <th>Price: </th>
                         </tr>
-                        {items.map(book => (
+                        {itemsCopy.sort(compare).map(book => (
                             <tr key={`${book.title}row`}>
                                 <td>
                                     <button
@@ -49,6 +51,7 @@ const DeleteList = props => {
             );
         },
         genres: items => {
+            const itemsCopy = cloneDeep(items);
             return (
                 <table cellSpacing="0">
                     <tbody>
@@ -56,7 +59,7 @@ const DeleteList = props => {
                             <th>Delete: </th>
                             <th>Genre: </th>
                         </tr>
-                        {items.map(genre => (
+                        {itemsCopy.sort(compare).map(genre => (
                             <tr key={`${genre.name}row`}>
                                 <td>
                                     <button

@@ -1,6 +1,7 @@
 .menuContainer {
     display: flex;
     flex-flow: column;
+    justify-content: center;
     background-color: white;
     height: 100%;
     padding: 0 10px;
@@ -76,7 +77,7 @@
 }
 
 a>img {
-    height: 27.5px;
+    height: 31.5px;
 }
 
 @media screen and (min-width: 700px) {

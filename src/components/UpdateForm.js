@@ -57,6 +57,7 @@ const UpdateForm = props => {
                                 <option value="horror">Horror</option>
                             </select>
                             <input
+                                className={style.inputPrice}
                                 key={`${index}bookPrice`}
                                 onChange={handleInputChange}
                                 id={`price-${book.id}`}

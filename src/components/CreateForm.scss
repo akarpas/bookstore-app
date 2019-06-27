@@ -6,6 +6,12 @@
 
 .createForm > label > input {
     text-transform: capitalize;
+    min-width: calc(100% - 12px);
+}
+
+.createForm > label > select {
+    text-transform: capitalize;
+    min-width: calc(100%);
 }
 
 @media screen and (min-width: 800px) {

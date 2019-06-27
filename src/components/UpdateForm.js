@@ -94,8 +94,6 @@ const UpdateForm = props => {
             const genresCopy = cloneDeep(genres);
             return contentCopy.sort(compare).map((genre, index) => {
                 const sortedGenres = genresCopy.sort(compare);
-                console.warn(sortedGenres);
-                console.warn(contentCopy)
                 const hasUpdates =
                     contentCopy[index].name !== sortedGenres[index].name;
 

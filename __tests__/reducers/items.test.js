@@ -1,10 +1,6 @@
 import items from '../../src/reducers/items';
 import INITIAL_BOOKS from '../../src/data/initialBooks.json';
 import INITIAL_GENRES from '../../src/data/initialGenres.json';
-
-const initialBooks = INITIAL_BOOKS.books;
-const initialGenres = INITIAL_GENRES.genres;
-
 import {
     SET_BOOKS,
     BOOKS_LOADING,
@@ -18,6 +14,9 @@ import {
     DELETE_GENRE
 } from '../../src/actions/types';
 
+const initialBooks = INITIAL_BOOKS.books;
+const initialGenres = INITIAL_GENRES.genres;
+
 const initialState = {
     books: initialBooks,
     booksLoading: false,
@@ -30,7 +29,7 @@ describe('items loading', () => {
         const category = 'books';
         const action = {
             type: BOOKS_LOADING,
-            category: category,
+            category,
             payload: true
         };
 
@@ -43,7 +42,7 @@ describe('items loading', () => {
         const category = 'genres';
         const action = {
             type: GENRES_LOADING,
-            category: category,
+            category,
             payload: true
         };
         // console.warn('initial state ----> ', initialState)
@@ -58,7 +57,7 @@ describe('items set', () => {
         const category = 'books';
         const action = {
             type: SET_BOOKS,
-            category: category,
+            category,
             payload: null
         };
 
@@ -71,7 +70,7 @@ describe('items set', () => {
         const category = 'genres';
         const action = {
             type: SET_GENRES,
-            category: category,
+            category,
             payload: null
         };
 
@@ -92,7 +91,7 @@ describe('create item', () => {
         };
         const action = {
             type: CREATE_BOOK,
-            category: category,
+            category,
             payload: newBook
         };
 
@@ -114,7 +113,7 @@ describe('create item', () => {
         };
         const action = {
             type: CREATE_GENRE,
-            category: category,
+            category,
             payload: newGenre
         };
 
@@ -131,7 +130,7 @@ describe('delete item', () => {
         const bookId = '1';
         const action = {
             type: DELETE_BOOK,
-            category: category,
+            category,
             payload: bookId
         };
         const indexToRemove = initialBooks.findIndex(
@@ -149,7 +148,7 @@ describe('delete item', () => {
         const genreId = '1';
         const action = {
             type: DELETE_GENRE,
-            category: category,
+            category,
             payload: genreId
         };
 
@@ -176,7 +175,7 @@ describe('update item', () => {
         };
         const action = {
             type: UPDATE_BOOK,
-            category: category,
+            category,
             payload: newBook
         };
         const indexToUpdate = initialBooks.findIndex(
@@ -198,7 +197,7 @@ describe('update item', () => {
         };
         const action = {
             type: UPDATE_GENRE,
-            category: category,
+            category,
             payload: newGenre
         };
         const indexToUpdate = initialGenres.findIndex(

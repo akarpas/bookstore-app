@@ -45,7 +45,6 @@ describe('items loading', () => {
             category,
             payload: true
         };
-        // console.warn('initial state ----> ', initialState)
         const nextState = await items(initialState, action);
         expect(nextState[`${category}Loading`]).toEqual(true);
         expect(nextState[`${category}`]).toEqual(initialGenres);

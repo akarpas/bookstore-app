@@ -47,7 +47,7 @@ const updateItem = (state, payload, category) => {
     );
     const currentBooks = cloneDeep(state.books);
     const updatedBooks = currentBooks.map(book => {
-        if (book.genre === previousGenre.name) {
+        if (book.genre.toUpperCase() === previousGenre.name.toUpperCase()) {
             const newBook = book;
             newBook.genre = payload.name;
             return newBook;

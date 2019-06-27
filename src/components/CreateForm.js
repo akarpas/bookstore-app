@@ -25,6 +25,8 @@ const CreateForm = props => {
                             onChange={handleInputChange}
                             id="title"
                             type="text"
+                            placeholder="Please enter the book's title"
+                            title="Please enter the book's title"
                         />
                     </label>
                     <label htmlFor="genre">
@@ -52,7 +54,10 @@ const CreateForm = props => {
                             required
                             onChange={handleInputChange}
                             id="price"
-                            type="number"
+                            type="text"
+                            pattern="[0-9]+([\.][0-9]+)?"
+                            placeholder="Please enter a number using dots for (.) for decimal numbers"
+                            title="Please enter a number using dots for (.) for decimals."
                         />
                     </label>
                     <label htmlFor="currency">
@@ -81,6 +86,8 @@ const CreateForm = props => {
                             onChange={handleInputChange}
                             id="genreName"
                             type="text"
+                            placeholder="Please enter a genre"
+                            title="Please enter a genre"
                         />
                     </label>
                     <button type="submit">Create</button>

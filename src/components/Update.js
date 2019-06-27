@@ -26,8 +26,8 @@ const Update = props => {
     }, []);
 
     useLayoutEffect(() => {
-        props.fetchItems(category)
-            setItemValues({ books: cloneBooks, genres: cloneGenres });
+        props.fetchItems(category);
+        setItemValues({ books: cloneBooks, genres: cloneGenres });
     }, [category]);
 
     const handleInputChange = event => {
@@ -35,7 +35,7 @@ const Update = props => {
         const itemToUpdate = itemValues[category].findIndex(
             item => item.id === id
         );
-        const newValues = itemValues[category].splice(0);
+        const newValues = cloneDeep(itemValues[category]);
         newValues[itemToUpdate][field] = event.target.value;
         setItemValues({ [category]: newValues });
     };

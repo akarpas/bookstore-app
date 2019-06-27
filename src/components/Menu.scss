@@ -79,7 +79,7 @@ a>img {
     height: 27.5px;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 700px) {
     .menuContainer {
         flex-flow: row;
         width: 80%;
@@ -87,15 +87,16 @@ a>img {
     }
     .left,
     .right {
-        flex-flow: column;
-        align-items: start;
-        width: 30%;
+        flex-flow: row;
         align-items: center;
+        justify-content: center;
+        width: 40%;
     }
     a>img {
         height: 30px;
     }
     .title {
+        padding: 0 10px;
         width: auto;
     }
 }

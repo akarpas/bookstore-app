@@ -46,7 +46,9 @@ button:hover {
 button:disabled,
 button:disabled:hover {
     cursor: default;
-    background-color: lightgrey;
+    background-color: lightgray;
+    font-weight: bold;
+    color: lightcoral;
 }
 
 .appContainer {

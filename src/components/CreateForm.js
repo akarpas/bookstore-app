@@ -38,7 +38,7 @@ const CreateForm = props => {
                             {genres.map(genre => (
                                 <option
                                     key={genre.id + genre.nameId}
-                                    value={genre.nameId}
+                                    value={genre.name}
                                 >
                                     {genre.name}
                                 </option>

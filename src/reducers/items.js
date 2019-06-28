@@ -17,6 +17,8 @@ import {
 import initialBooks from '../data/initialBooks.json';
 import initialGenres from '../data/initialGenres.json';
 
+const BOOKS = 'books';
+
 const INITIAL_STATE = {
     books: initialBooks.books,
     booksLoading: false,
@@ -63,7 +65,7 @@ const updateItem = (state, payload, category) => {
 };
 
 const createItem = (state, payload, category) => {
-    const isBooks = category === 'books';
+    const isBooks = category === BOOKS;
     const currentItems = state[category].slice(0);
     const itemIds = currentItems.map(item => item.id);
     const lastId = Math.max.apply(null, itemIds);

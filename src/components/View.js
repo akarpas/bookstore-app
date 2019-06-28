@@ -7,7 +7,7 @@ import {
     getBooksLoading, getGenresLoading, getBooks, getGenres,
 } from '../reducers/items';
 import ViewList from './ViewList';
-import style from './View.scss';
+import Layout from './Layout';
 
 const BOOKS = 'books';
 
@@ -33,8 +33,7 @@ const View = props => {
     const itemsLoading = isBooks ? booksLoading : genresLoading;
 
     return (
-        <div className={style.viewContainer}>
-            <h2 className={style.viewHeader}>List of {category}</h2>
+        <Layout title={`List of ${category}`}>
             {itemsLoading ? (
                 <div>Loading...</div>
             ) : (
@@ -43,7 +42,7 @@ const View = props => {
                     category={category}
                 />
             )}
-        </div>
+        </Layout>
     );
 };
 

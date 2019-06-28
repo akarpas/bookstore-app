@@ -4,6 +4,7 @@ import View from './View';
 import Create from './Create';
 import Delete from './Delete';
 import Update from './Update';
+import NoMatch from './NoMatch';
 
 import style from './Content.scss';
 
@@ -15,6 +16,7 @@ const Content = () => (
             <Route path="/create/:category" component={Create} />
             <Route path="/delete/:category" component={Delete} />
             <Route path="/update/:category" component={Update} />
+            <Route component={NoMatch} />
         </Switch>
     </div>
 );

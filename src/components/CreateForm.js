@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash.clonedeep';
-import { compare } from '../utils/compare';
 import style from './CreateForm.scss';
 
 const CreateForm = props => {
@@ -16,7 +14,6 @@ const CreateForm = props => {
 
     const render = {
         books: () => {
-            const genresCopy = cloneDeep(genres);
             return (
                 <form className={style.createForm} onSubmit={submit}>
                     <label htmlFor="title">
@@ -38,7 +35,7 @@ const CreateForm = props => {
                             onChange={handleInputChange}
                             id="genre"
                         >
-                            {genresCopy.sort(compare).map(genre => (
+                            {genres.map(genre => (
                                 <option
                                     key={genre.id + genre.nameId}
                                     value={genre.nameId}

@@ -1,7 +1,7 @@
 import toCamelCase from 'to-camel-case';
 import capitalize from 'capitalize';
 import cloneDeep from 'lodash.clonedeep';
-
+import { compare } from '../utils/compare';
 import {
     SET_BOOKS,
     BOOKS_LOADING,
@@ -27,7 +27,9 @@ const INITIAL_STATE = {
 };
 
 const setItems = (state, category) => {
-    return { ...state, [`${category}Loading`]: false };
+    const items = cloneDeep(state[category]);
+    const sortedItems = items.sort(compare);
+    return { ...state, [category]: sortedItems, [`${category}Loading`]: false };
 };
 
 const setLoading = (state, category) => {
@@ -35,10 +37,19 @@ const setLoading = (state, category) => {
 };
 
 const deleteItem = (state, payload, category) => {
+    const { id, deleteBooks } = payload;
     const currentItems = state[category].slice(0);
-    const newItems = currentItems.filter(
-        item => Number(item.id) !== Number(payload)
+    const newItems = cloneDeep(currentItems).filter(
+        item => Number(item.id) !== Number(id)
     );
+    if (deleteBooks) {
+        const currentBooks = state[BOOKS].slice(0);
+        const genreToDelete = currentItems.find(item => item.id === String(id)).name.toLowerCase();
+        const newBooks = currentBooks.filter(book => {
+            return book.genre.toLowerCase() !== genreToDelete;
+        });
+        return { ...state, [BOOKS]: newBooks, [category]: newItems };
+    }
     return { ...state, [category]: newItems };
 };
 

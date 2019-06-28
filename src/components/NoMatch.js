@@ -14,7 +14,7 @@ const NoMatch = props => {
             <Link to="/view/books">View Books</Link>
         </div>
     );
-}
+};
 
 export default NoMatch;
 

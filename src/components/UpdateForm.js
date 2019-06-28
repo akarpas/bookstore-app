@@ -18,6 +18,7 @@ const UpdateForm = props => {
         books: content => {
             const contentCopy = cloneDeep(content);
             const booksCopy = cloneDeep(books);
+            const genresCopy = cloneDeep(genres);
             return contentCopy.sort(compare).map((book, index) => {
                 const sortedBooks = booksCopy.sort(compare);
                 const hasUpdates =
@@ -45,16 +46,18 @@ const UpdateForm = props => {
                             />
                             <select
                                 key={`${index}bookGenre`}
-                                value={book.genre}
+                                value={book.genre.toLowerCase()}
                                 onChange={handleInputChange}
                                 id={`genre-${book.id}`}
                             >
-                                <option value="scienceFiction">
-                                    Science Fiction
-                                </option>
-                                <option value="mystery">Mystery</option>
-                                <option value="romance">Romance</option>
-                                <option value="horror">Horror</option>
+                                {genresCopy.map(genre => (
+                                    <option
+                                        key={genre.name.toLowerCase()}
+                                        value={genre.name.toLowerCase()}
+                                    >
+                                        {genre.name}
+                                    </option>
+                                ))}
                             </select>
                             <input
                                 className={style.inputPrice}

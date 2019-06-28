@@ -10,13 +10,15 @@ import { fetchItems, updateItem } from '../actions/items';
 import UpdateForm from './UpdateForm';
 import style from './Update.scss';
 
+const BOOKS = 'books';
+
 const Update = props => {
     const { match, booksLoading, books, genres, genresLoading } = props;
     const cloneBooks = cloneDeep(books);
     const cloneGenres = cloneDeep(genres);
     const { params } = match;
     const { category } = params;
-    const isBooks = category === 'books';
+    const isBooks = category === BOOKS;
     const [itemValues, setItemValues] = useState(
         { books: cloneBooks, genres: cloneGenres } || []
     );
@@ -27,6 +29,7 @@ const Update = props => {
 
     useLayoutEffect(() => {
         props.fetchItems(category);
+        // TO DO - Check necessity
         setItemValues({ books: cloneBooks, genres: cloneGenres });
     }, [category]);
 

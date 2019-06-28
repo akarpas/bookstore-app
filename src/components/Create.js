@@ -8,40 +8,42 @@ import { createItem, fetchItems } from '../actions/items';
 import CreateForm from './CreateForm';
 import style from './Create.scss';
 
+const BOOKS = 'books';
+const GENRES = 'genres';
+const DEFAULT_BOOK_VALUES = {
+    title: '',
+    price: '',
+    genre: 'mystery',
+    currency: 'eur'
+};
+const DEFAULT_GENRE_VALUES = {
+    genreName: ''
+};
+
 const Create = props => {
     const { match, genres, genresLoading } = props;
     const { params } = match;
     const { category } = params;
 
-    const defaultBookValues = {
-        title: '',
-        price: '',
-        genre: 'mystery',
-        currency: 'eur'
-    };
-    const defaultGenreValues = {
-        genreName: ''
-    };
-
-    const [bookValues, setBookValues] = useState(defaultBookValues);
-    const [genreValues, setGenreValues] = useState(defaultGenreValues);
+    const [bookValues, setBookValues] = useState(DEFAULT_BOOK_VALUES);
+    const [genreValues, setGenreValues] = useState(DEFAULT_GENRE_VALUES);
     const [hasDuplicateError, setHasDuplicateError] = useState(false);
     const [hasCreatedSuccessfully, setHasCreatedSuccessfully] = useState(false);
-    const isBooks = category === 'books';
-
-    useLayoutEffect(() => {
-        props.fetchItems('genres');
-    }, []);
-
-    useLayoutEffect(() => {
-        props.fetchItems('genres');
-        resetMessages(); // eslint-disable-line
-    }, [category]);
+    const isBooks = category === BOOKS;
 
     const resetMessages = () => {
         setHasDuplicateError(false);
         setHasCreatedSuccessfully(false);
     };
+
+    useLayoutEffect(() => {
+        props.fetchItems(GENRES);
+    }, []);
+
+    useLayoutEffect(() => {
+        props.fetchItems(GENRES);
+        resetMessages();
+    }, [category]);
 
     const submit = event => {
         event.preventDefault();
@@ -54,7 +56,7 @@ const Create = props => {
                 ...bookValues,
                 genre: genreName.name
             });
-            setBookValues(defaultBookValues);
+            setBookValues(DEFAULT_BOOK_VALUES);
             setHasCreatedSuccessfully(true);
         } else if (
             genres.findIndex(
@@ -66,7 +68,7 @@ const Create = props => {
             setHasDuplicateError(true);
         } else {
             props.createItem(category, genreValues);
-            setGenreValues(defaultGenreValues);
+            setGenreValues(DEFAULT_GENRE_VALUES);
             setHasCreatedSuccessfully(true);
         }
     };

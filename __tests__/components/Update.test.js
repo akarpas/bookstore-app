@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import INITIAL_BOOKS from '../../src/data/initialBooks.json';
-import INITIAL_GENRES from '../../src/data/initialGenres.json';
 import { fetchItems } from '../../src/actions/items';
 import Update from '../../src/components/Update';
 import createStore from '../../src/store';
+
+import INITIAL_BOOKS from '../../src/data/initialBooks.json';
+import INITIAL_GENRES from '../../src/data/initialGenres.json';
 
 const initialBooks = INITIAL_BOOKS.books;
 const initialGenres = INITIAL_GENRES.genres;
@@ -84,9 +85,8 @@ describe('shows update books list', () => {
     });
 
     it('changes button color on input change', () => {
-        const inputId = '#title-1';
-        const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'title-1' } });
+        const input = wrapper.find('input').first();
+        input.simulate('change', { target: { value: 'Test', id: `${input.prop('id')}` } });
         wrapper.update();
         expect(
             wrapper
@@ -153,9 +153,8 @@ describe('shows update genres list', () => {
     });
 
     it('changes button color on input change', () => {
-        const inputId = '#name-1';
-        const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'name-1' } });
+        const input = wrapper.find('input').first();
+        input.simulate('change', { target: { value: 'Test', id: `${input.prop('id')}` } });
         wrapper.update();
         expect(
             wrapper

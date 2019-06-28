@@ -43,8 +43,11 @@ const ViewList = props => {
                     {itemsCopy.sort(compare).map(genre => {
                         const hasBooks =
                             content.books.findIndex(
-                                book => book.genre === genre.name
+                                book =>
+                                    book.genre.toLowerCase() ===
+                                    genre.name.toLowerCase()
                             ) !== -1;
+
                         const booksCopy = cloneDeep(content.books);
                         return (
                             <tbody key={`${genre.name}section`}>

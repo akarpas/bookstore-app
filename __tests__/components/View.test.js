@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import INITIAL_BOOKS from '../../src/data/initialBooks.json';
-import INITIAL_GENRES from '../../src/data/initialGenres.json';
 import { fetchItems } from '../../src/actions/items';
 import View from '../../src/components/View';
 import createStore from '../../src/store';
+
+import INITIAL_BOOKS from '../../src/data/initialBooks.json';
+import INITIAL_GENRES from '../../src/data/initialGenres.json';
 
 const initialBooks = INITIAL_BOOKS.books;
 const initialGenres = INITIAL_GENRES.genres;

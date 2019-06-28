@@ -9,11 +9,13 @@ import {
 import ViewList from './ViewList';
 import style from './View.scss';
 
+const BOOKS = 'books';
+
 const View = props => {
     const { match, books, booksLoading, genres, genresLoading } = props;
     const { params } = match;
     const { category } = params;
-    const isBooks = category === 'books';
+    const isBooks = category === BOOKS;
 
     useLayoutEffect(() => {
         props.fetchItems(category);

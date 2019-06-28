@@ -9,11 +9,13 @@ import { fetchItems, deleteItem } from '../actions/items';
 import DeleteList from './DeleteList';
 import style from './Delete.scss';
 
+const BOOKS = 'books';
+
 const Delete = props => {
     const { match, books, booksLoading, genres, genresLoading } = props;
     const { params } = match;
     const { category } = params;
-    const isBooks = category === 'books';
+    const isBooks = category === BOOKS;
 
     useLayoutEffect(() => {
         props.fetchItems(category);

@@ -14,9 +14,12 @@ input, select {
     font-size: 14px;
     height: 30px;
     outline: none;
+    margin: 5px 0;
+}
+
+input {
     padding-left: 5px;
     padding-right: 5px;
-    margin: 5px 0;
 }
 
 button {

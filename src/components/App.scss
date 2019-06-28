@@ -22,7 +22,12 @@ input {
     padding-right: 5px;
 }
 
+select {
+    cursor: pointer;
+}
+
 button {
+    cursor: pointer;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;

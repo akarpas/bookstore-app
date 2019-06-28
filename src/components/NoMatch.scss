@@ -1,0 +1,10 @@
+.noMatchContainer {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.noMatchContainer > a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}

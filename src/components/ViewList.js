@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
 import { compare } from '../utils/compare';
-import { hasResults } from '../utils/hasResults';
+import { hasNoResults } from '../utils/hasNoResults';
 import NoResults from './NoResults';
 import style from './ViewList.scss';
 
@@ -23,7 +23,7 @@ const ViewList = props => {
                     .toLowerCase()
                     .includes(searchInput.toLowerCase());
             });
-            const noItems = hasResults(itemsToRender);
+            const noItems = hasNoResults(itemsToRender);
             return (
                 <div className={style.bookListContainer}>
                     <input
@@ -67,7 +67,7 @@ const ViewList = props => {
         },
         genres: items => {
             const itemsCopy = cloneDeep(items);
-            const noItems = hasResults(itemsCopy);
+            const noItems = hasNoResults(itemsCopy);
             return (
                 <div className={style.genreListContainer}>
                     <table>

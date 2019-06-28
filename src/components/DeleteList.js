@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { hasResults } from '../utils/hasResults';
+import { hasNoResults } from '../utils/hasNoResults';
 import NoResults from './NoResults';
 
 import style from './DeleteList.scss';
@@ -10,7 +10,7 @@ const DeleteList = props => {
 
     const render = {
         books: items => {
-            const noItems = hasResults(items);
+            const noItems = hasNoResults(items);
             return (
                 <div className={style.booksDeleteContainer}>
                     <table cellSpacing="0">
@@ -53,7 +53,7 @@ const DeleteList = props => {
             );
         },
         genres: items => {
-            const noItems = hasResults(items);
+            const noItems = hasNoResults(items);
             return (
                 <div className={style.genresDeleteContainer}>
                     <table cellSpacing="0">

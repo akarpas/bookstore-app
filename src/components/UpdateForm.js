@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
 import { compare } from '../utils/compare';
-import { hasResults } from '../utils/hasResults';
+import { hasNoResults } from '../utils/hasNoResults';
 import NoResults from './NoResults';
 import style from './UpdateForm.scss';
 
@@ -19,7 +19,7 @@ const UpdateForm = props => {
     const render = {
         books: content => {
             const contentCopy = cloneDeep(content);
-            const noItems = hasResults(contentCopy);
+            const noItems = hasNoResults(contentCopy);
 
             return (
                 <div className={style.booksUpdateContainer}>
@@ -101,7 +101,7 @@ const UpdateForm = props => {
         },
         genres: content => {
             const contentCopy = cloneDeep(content);
-            const noItems = hasResults(contentCopy);
+            const noItems = hasNoResults(contentCopy);
 
             return (
                 <div className={style.genresUpdateContainer}>

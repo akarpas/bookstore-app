@@ -45,7 +45,6 @@ const Create = props => {
         resetMessages();
     }, [category]);
 
-
     const submit = event => {
         event.preventDefault();
 

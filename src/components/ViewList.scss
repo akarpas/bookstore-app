@@ -16,10 +16,32 @@ th, tr, td {
     width: auto;
 }
 
+.bookFormContainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.bookGenre {
+    width: auto;
+}
+
 .bookPrice {
+    width: auto;
     text-transform: uppercase;
 }
 
 .genreTitle {
     padding: 10px 0;
+}
+
+@media screen and (min-width: 800px) {
+    .bookGenre {
+        width: 225px;
+    }
+    .bookPrice {
+        width: 125px;
+        text-transform: uppercase;
+    }
 }

@@ -7,6 +7,7 @@ import style from './ViewList.scss';
 const ViewList = props => {
     const { category, content } = props;
     const [searchInput, setSearchInput] = useState('');
+
     const handleChange = event => {
         setSearchInput(event.target.value);
     };
@@ -15,17 +16,19 @@ const ViewList = props => {
         books: items => {
             const itemsCopy = cloneDeep(items);
             return (
-                <div style={{ width: '100%' }}>
+                <div className={style.bookFormContainer}>
                     <input
+                        name="search"
                         type="text"
                         onChange={event => handleChange(event)}
+                        placeholder="Search by title"
                     />
                     <table>
                         <tbody>
                             <tr>
                                 <th>Title: </th>
-                                <th>Genre: </th>
-                                <th>Price: </th>
+                                <th className={style.bookGenre}>Genre: </th>
+                                <th className={style.bookPrice}>Price: </th>
                             </tr>
                             {itemsCopy
                                 .sort(compare)
@@ -38,7 +41,10 @@ const ViewList = props => {
                                 .map(book => (
                                     <tr key={`${book.title}row`}>
                                         <td key={book.title}>{book.title}</td>
-                                        <td key={book.title + book.genre}>
+                                        <td
+                                            className={style.bookGenre}
+                                            key={book.title + book.genre}
+                                        >
                                             {book.genre}
                                         </td>
                                         <td

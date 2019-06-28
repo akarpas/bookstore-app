@@ -22,6 +22,7 @@ const ViewList = props => {
                         type="text"
                         onChange={event => handleChange(event)}
                         placeholder="Search by title"
+                        className={style.searchInput}
                     />
                     <table>
                         <tbody>

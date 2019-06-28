@@ -31,6 +31,10 @@ button {
     outline: none;
 }
 
+button:hover {
+    background-color: darkgray;
+}
+
 .appContainer {
     align-items: center;
     display: flex;

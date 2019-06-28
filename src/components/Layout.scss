@@ -1,0 +1,12 @@
+.layoutHeader {
+    width: 100%;
+    text-align: center;
+}
+
+.layoutContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

@@ -31,19 +31,20 @@ const Create = props => {
     const [hasCreatedSuccessfully, setHasCreatedSuccessfully] = useState(false);
     const isBooks = category === BOOKS;
 
+    const resetMessages = () => {
+        setHasDuplicateError(false);
+        setHasCreatedSuccessfully(false);
+    };
+
     useLayoutEffect(() => {
         props.fetchItems(GENRES);
     }, []);
 
     useLayoutEffect(() => {
         props.fetchItems(GENRES);
-        resetMessages(); // eslint-disable-line
+        resetMessages();
     }, [category]);
 
-    const resetMessages = () => {
-        setHasDuplicateError(false);
-        setHasCreatedSuccessfully(false);
-    };
 
     const submit = event => {
         event.preventDefault();

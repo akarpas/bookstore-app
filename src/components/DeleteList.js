@@ -22,8 +22,8 @@ const DeleteList = props => {
                             <th>Genre: </th>
                             <th>Price: </th>
                         </tr>
-                        {items.map(book => (
-                            <tr key={`${book.title}row`}>
+                        {items.map((book, index) => (
+                            <tr key={`${book.title + index}row`}>
                                 <td>
                                     <button
                                         onClick={handleDeleteItem}
@@ -33,13 +33,13 @@ const DeleteList = props => {
                                         X
                                     </button>
                                 </td>
-                                <td key={book.title}>{book.title}</td>
-                                <td key={book.title + book.genre}>
+                                <td key={book.title + index}>{book.title}</td>
+                                <td key={book.title + book.genre + index}>
                                     {book.genre}
                                 </td>
                                 <td
                                     className={style.bookPrice}
-                                    key={book.title + book.price}
+                                    key={book.title + book.price + index}
                                 >
                                     {book.price} {book.currency}
                                 </td>

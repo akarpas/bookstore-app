@@ -9,8 +9,10 @@ const NoMatch = props => {
     const { pathname } = location;
     return (
         <div className={style.noMatchContainer}>
-            No match for path <em>{pathname}</em>. Please go back to:
-            <br /><br />
+            No match for path <em>{pathname}</em>. Please use the menu above to
+            navigate or go to:
+            <br />
+            <br />
             <Link to="/view/books">View Books</Link>
         </div>
     );

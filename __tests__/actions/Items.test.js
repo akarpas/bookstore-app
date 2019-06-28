@@ -120,18 +120,24 @@ describe('it deletes items', () => {
         expect(actions[0]).toEqual({
             type: DELETE_BOOK,
             category,
-            payload: testId
+            payload: {
+                id: testId,
+                deleteBooks: undefined
+            }
         });
     });
 
     it('handles deleting a genre', async () => {
         const category = 'genres';
-        await store.dispatch(deleteItem(category, testId));
+        await store.dispatch(deleteItem(category, testId, false));
         const actions = store.getActions();
         expect(actions[0]).toEqual({
             type: DELETE_GENRE,
             category,
-            payload: testId
+            payload: {
+                id: testId,
+                deleteBooks: false
+            }
         });
     });
 });

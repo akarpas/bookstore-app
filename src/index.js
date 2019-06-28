@@ -1,11 +1,3 @@
-// TO DO: Recheck if these packages are necessary for
-// Internet Explorer - they are making the asset size too large
-
-// import 'core-js/es/parse-int';
-// import 'core-js/es/parse-float';
-// import 'core-js/es/date';
-
-import 'raf/polyfill';
 import 'core-js/es/map';
 import 'core-js/es/set';
 import 'core-js/es/symbol';

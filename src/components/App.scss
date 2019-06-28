@@ -14,17 +14,41 @@ input, select {
     font-size: 14px;
     height: 30px;
     outline: none;
-    padding-left: 5px;
-    padding-right: 5px;
     margin: 5px 0;
 }
 
+input {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+select {
+    cursor: pointer;
+}
+
 button {
+    cursor: pointer;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid darkgray;
     background-color: lightgrey;
     height: 30px;
     margin: 5px 0;
     min-width: 30px;
     outline: none;
+}
+
+button:hover {
+    background-color: darkgray;
+}
+
+button:disabled,
+button:disabled:hover {
+    cursor: default;
+    background-color: lightgray;
+    font-weight: bold;
+    color: lightcoral;
 }
 
 .appContainer {

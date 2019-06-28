@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { hasNoResults } from '../utils/hasNoResults';
+
 import style from './CreateForm.scss';
 
 const CreateForm = props => {
@@ -14,6 +16,8 @@ const CreateForm = props => {
 
     const render = {
         books: () => {
+            const noGenres = hasNoResults(genres);
+
             return (
                 <form className={style.createForm} onSubmit={submit}>
                     <label htmlFor="title">
@@ -70,7 +74,9 @@ const CreateForm = props => {
                             <option value="usd">USD</option>
                         </select>
                     </label>
-                    <button type="submit">Create</button>
+                    <button type="submit" disabled={noGenres}>
+                        {noGenres ? 'No Genres Available' : 'Create'}
+                    </button>
                 </form>
             );
         },

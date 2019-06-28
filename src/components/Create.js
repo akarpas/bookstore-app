@@ -11,23 +11,22 @@ import style from './Create.scss';
 
 const BOOKS = 'books';
 const GENRES = 'genres';
-const DEFAULT_BOOK_VALUES = {
-    title: '',
-    price: '',
-    genre: 'mystery',
-    currency: 'eur'
-};
-const DEFAULT_GENRE_VALUES = {
-    genreName: ''
-};
 
 const Create = props => {
     const { match, genres, genresLoading } = props;
     const { params } = match;
     const { category } = params;
-
-    const [bookValues, setBookValues] = useState(DEFAULT_BOOK_VALUES);
-    const [genreValues, setGenreValues] = useState(DEFAULT_GENRE_VALUES);
+    const defaultBookValues = {
+        title: '',
+        price: '',
+        genre: genres[0].name,
+        currency: 'eur'
+    };
+    const defaultGenreValues = {
+        genreName: ''
+    };
+    const [bookValues, setBookValues] = useState(defaultBookValues);
+    const [genreValues, setGenreValues] = useState(defaultGenreValues);
     const [hasDuplicateError, setHasDuplicateError] = useState(false);
     const [hasCreatedSuccessfully, setHasCreatedSuccessfully] = useState(false);
     const isBooks = category === BOOKS;
@@ -48,16 +47,15 @@ const Create = props => {
 
     const submit = event => {
         event.preventDefault();
-
         if (isBooks) {
             const genreName = genres.find(
-                genre => genre.nameId === bookValues.genre
+                genre => genre.name.toLowerCase() === bookValues.genre.toLowerCase()
             );
             props.createItem(category, {
                 ...bookValues,
                 genre: genreName.name
             });
-            setBookValues(DEFAULT_BOOK_VALUES);
+            setBookValues(defaultBookValues);
             setHasCreatedSuccessfully(true);
         } else if (
             genres.findIndex(
@@ -69,7 +67,7 @@ const Create = props => {
             setHasDuplicateError(true);
         } else {
             props.createItem(category, genreValues);
-            setGenreValues(DEFAULT_GENRE_VALUES);
+            setGenreValues(defaultGenreValues);
             setHasCreatedSuccessfully(true);
         }
     };

@@ -84,9 +84,8 @@ describe('shows update books list', () => {
     });
 
     it('changes button color on input change', () => {
-        const inputId = '#title-1';
-        const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'title-1' } });
+        const input = wrapper.find('input').first();
+        input.simulate('change', { target: { value: 'Test', id: `${input.prop('id')}` } });
         wrapper.update();
         expect(
             wrapper
@@ -153,9 +152,8 @@ describe('shows update genres list', () => {
     });
 
     it('changes button color on input change', () => {
-        const inputId = '#name-1';
-        const input = wrapper.find(inputId);
-        input.simulate('change', { target: { value: 'Test', id: 'name-1' } });
+        const input = wrapper.find('input').first();
+        input.simulate('change', { target: { value: 'Test', id: `${input.prop('id')}` } });
         wrapper.update();
         expect(
             wrapper

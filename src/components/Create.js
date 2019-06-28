@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import capitalize from 'capitalize';
 import { getGenresLoading, getGenres } from '../reducers/items';
 import { createItem, fetchItems } from '../actions/items';
+import { hasNoResults } from '../utils/hasNoResults';
 import CreateForm from './CreateForm';
 import Layout from './Layout';
 import style from './Create.scss';
@@ -19,7 +20,7 @@ const Create = props => {
     const defaultBookValues = {
         title: '',
         price: '',
-        genre: genres[0].name,
+        genre: hasNoResults(genres) ? '' : genres[0].name,
         currency: 'eur'
     };
     const defaultGenreValues = {

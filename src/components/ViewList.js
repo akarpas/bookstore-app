@@ -31,7 +31,6 @@ const ViewList = props => {
                                 <th className={style.bookPrice}>Price: </th>
                             </tr>
                             {itemsCopy
-                                .sort(compare)
                                 .filter(book => {
                                     if (searchInput.length === 0) return book;
                                     return book.title
@@ -83,7 +82,6 @@ const ViewList = props => {
                                     </tr>
                                 )}
                                 {booksCopy
-                                    .sort(compare)
                                     .filter(
                                         item =>
                                             item.genre.toLowerCase() ===

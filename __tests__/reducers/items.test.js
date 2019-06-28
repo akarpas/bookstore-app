@@ -1,4 +1,5 @@
 import items from '../../src/reducers/items';
+import { compare } from '../../src/utils/compare';
 import INITIAL_BOOKS from '../../src/data/initialBooks.json';
 import INITIAL_GENRES from '../../src/data/initialGenres.json';
 import {
@@ -35,7 +36,7 @@ describe('items loading', () => {
 
         const nextState = await items(initialState, action);
         expect(nextState[`${category}Loading`]).toEqual(true);
-        expect(nextState[`${category}`]).toEqual(initialBooks);
+        expect(nextState[`${category}`]).toEqual(initialBooks.sort(compare));
     });
 
     it('should set genres loading', async () => {
@@ -47,7 +48,7 @@ describe('items loading', () => {
         };
         const nextState = await items(initialState, action);
         expect(nextState[`${category}Loading`]).toEqual(true);
-        expect(nextState[`${category}`]).toEqual(initialGenres);
+        expect(nextState[`${category}`]).toEqual(initialGenres.sort(compare));
     });
 });
 
@@ -130,7 +131,9 @@ describe('delete item', () => {
         const action = {
             type: DELETE_BOOK,
             category,
-            payload: bookId
+            payload: {
+                id: bookId
+            }
         };
         const indexToRemove = initialBooks.findIndex(
             book => String(book.id) === String(bookId)
@@ -148,7 +151,10 @@ describe('delete item', () => {
         const action = {
             type: DELETE_GENRE,
             category,
-            payload: genreId
+            payload: {
+                id: genreId,
+                deleteBooks: false,
+            }
         };
 
         const indexToRemove = initialGenres.findIndex(

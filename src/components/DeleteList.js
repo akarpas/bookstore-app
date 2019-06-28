@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash.clonedeep';
-import { compare } from '../utils/compare';
+
 import style from './DeleteList.scss';
 
 const DeleteList = props => {
     const {
         category,
         content,
-        handleDeleteItem
+        handleDeleteItem,
+        handleCheckBox
     } = props;
 
     const render = {
         books: items => {
-            const itemsCopy = cloneDeep(items);
             return (
                 <table cellSpacing="0">
                     <tbody>
@@ -23,8 +22,8 @@ const DeleteList = props => {
                             <th>Genre: </th>
                             <th>Price: </th>
                         </tr>
-                        {itemsCopy.sort(compare).map(book => (
-                            <tr key={`${book.title}row`}>
+                        {items.map((book, index) => (
+                            <tr key={`${book.title + index}row`}>
                                 <td>
                                     <button
                                         onClick={handleDeleteItem}
@@ -34,13 +33,13 @@ const DeleteList = props => {
                                         X
                                     </button>
                                 </td>
-                                <td key={book.title}>{book.title}</td>
-                                <td key={book.title + book.genre}>
+                                <td key={book.title + index}>{book.title}</td>
+                                <td key={book.title + book.genre + index}>
                                     {book.genre}
                                 </td>
                                 <td
                                     className={style.bookPrice}
-                                    key={book.title + book.price}
+                                    key={book.title + book.price + index}
                                 >
                                     {book.price} {book.currency}
                                 </td>
@@ -51,15 +50,15 @@ const DeleteList = props => {
             );
         },
         genres: items => {
-            const itemsCopy = cloneDeep(items);
             return (
                 <table cellSpacing="0">
                     <tbody>
                         <tr>
                             <th>Delete: </th>
                             <th>Genre: </th>
+                            <th>Delete books: </th>
                         </tr>
-                        {itemsCopy.sort(compare).map(genre => (
+                        {items.map(genre => (
                             <tr key={`${genre.name}row`}>
                                 <td>
                                     <button
@@ -72,6 +71,9 @@ const DeleteList = props => {
                                 </td>
                                 <td key={genre.title + genre.genre}>
                                     {genre.name}
+                                </td>
+                                <td>
+                                    <input id={genre.id} type="checkbox" onChange={handleCheckBox}/>
                                 </td>
                             </tr>
                         ))}
@@ -89,5 +91,6 @@ export default DeleteList;
 DeleteList.propTypes = {
     category: PropTypes.string,
     content: PropTypes.object,
-    handleDeleteItem: PropTypes.func
+    handleDeleteItem: PropTypes.func,
+    handleCheckBox: PropTypes.func
 };

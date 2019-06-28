@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,6 +15,7 @@ const Delete = props => {
     const { match, books, booksLoading, genres, genresLoading } = props;
     const { params } = match;
     const { category } = params;
+    const [isDeleteBooks, setIsDeleteBooks] = useState({});
     const isBooks = category === BOOKS;
 
     useLayoutEffect(() => {
@@ -27,10 +28,15 @@ const Delete = props => {
 
     const handleDeleteItem = event => {
         const { id } = event.target;
-        props.deleteItem(category, Number(id));
+        const deleteBooks = isDeleteBooks[id] || false;
+        props.deleteItem(category, Number(id), deleteBooks);
         props.fetchItems(category);
     };
 
+    const handleCheckBox = event => {
+        const { id } = event.target;
+        setIsDeleteBooks({ ...isDeleteBooks, [id]: !isDeleteBooks[id] });
+    };
     const itemsLoading = isBooks ? booksLoading : genresLoading;
 
     const content = {
@@ -45,6 +51,7 @@ const Delete = props => {
                     content={content}
                     handleDeleteItem={handleDeleteItem}
                     category={category}
+                    handleCheckBox={handleCheckBox}
                 />
             }
         </Layout>
@@ -63,7 +70,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchItems: category => dispatch(fetchItems(category)),
-        deleteItem: (category, id) => dispatch(deleteItem(category, id))
+        deleteItem: (category, id, deleteBooks) => dispatch(deleteItem(category, id, deleteBooks))
     };
 };
 

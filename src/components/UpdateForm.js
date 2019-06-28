@@ -17,15 +17,13 @@ const UpdateForm = props => {
     const render = {
         books: content => {
             const contentCopy = cloneDeep(content);
-            const booksCopy = cloneDeep(books);
-            const genresCopy = cloneDeep(genres);
+
             return contentCopy.sort(compare).map((book, index) => {
-                const sortedBooks = booksCopy.sort(compare);
                 const hasUpdates =
-                    contentCopy[index].title !== sortedBooks[index].title ||
-                    contentCopy[index].price !== sortedBooks[index].price ||
-                    contentCopy[index].genre !== sortedBooks[index].genre ||
-                    contentCopy[index].currency !== sortedBooks[index].currency;
+                    contentCopy[index].title !== books[index].title ||
+                    contentCopy[index].price !== books[index].price ||
+                    contentCopy[index].genre !== books[index].genre ||
+                    contentCopy[index].currency !== books[index].currency;
 
                 return (
                     <div
@@ -50,7 +48,7 @@ const UpdateForm = props => {
                                 onChange={handleInputChange}
                                 id={`genre-${book.id}`}
                             >
-                                {genresCopy.map(genre => (
+                                {genres.map(genre => (
                                     <option
                                         key={genre.name.toLowerCase()}
                                         value={genre.name.toLowerCase()}
@@ -95,11 +93,10 @@ const UpdateForm = props => {
         },
         genres: content => {
             const contentCopy = cloneDeep(content);
-            const genresCopy = cloneDeep(genres);
+
             return contentCopy.sort(compare).map((genre, index) => {
-                const sortedGenres = genresCopy.sort(compare);
                 const hasUpdates =
-                    contentCopy[index].name !== sortedGenres[index].name;
+                    contentCopy[index].name !== genres[index].name;
 
                 return (
                     <div

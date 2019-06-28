@@ -18,10 +18,10 @@ const actions = {
         type: `create${toPascalCase(category.slice(0, category.length - 1))}`,
         payload: item
     }),
-    delete: (category, id) => ({
+    delete: (category, id, deleteBooks) => ({
         category,
         type: `delete${toPascalCase(category.slice(0, category.length - 1))}`,
-        payload: id
+        payload: { id, deleteBooks }
     }),
     update: (category, item) => ({
         category,
@@ -40,8 +40,8 @@ export const createItem = (category, item) => dispatch => {
     dispatch(actions.create(category, item));
 };
 
-export const deleteItem = (category, itemId) => dispatch => {
-    dispatch(actions.delete(category, itemId));
+export const deleteItem = (category, itemId, deleteBooks) => dispatch => {
+    dispatch(actions.delete(category, itemId, deleteBooks));
 };
 
 export const updateItem = (category, item) => dispatch => {

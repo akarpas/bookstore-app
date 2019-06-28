@@ -38,18 +38,18 @@ const ViewList = props => {
                                         .toLowerCase()
                                         .includes(searchInput.toLowerCase());
                                 })
-                                .map(book => (
-                                    <tr key={`${book.title}row`}>
-                                        <td key={book.title}>{book.title}</td>
+                                .map((book, index) => (
+                                    <tr key={`${book.title + index}row`}>
+                                        <td key={book.title + index}>{book.title}</td>
                                         <td
                                             className={style.bookGenre}
-                                            key={book.title + book.genre}
+                                            key={book.title + book.genre + index}
                                         >
                                             {book.genre}
                                         </td>
                                         <td
                                             className={style.bookPrice}
-                                            key={book.title + book.price}
+                                            key={book.title + book.price + index}
                                         >
                                             {book.price} {book.currency}
                                         </td>

@@ -1,3 +1,11 @@
+.booksUpdateContainer,
+.genresUpdateContainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
 .button {
     background-color: lightgrey;
     outline: none;

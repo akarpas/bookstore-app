@@ -16,7 +16,14 @@ th, tr, td {
     width: auto;
 }
 
-.bookFormContainer {
+.bookListContainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.genreListContainer {
     display: flex;
     flex-flow: column;
     align-items: center;

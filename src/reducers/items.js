@@ -55,6 +55,17 @@ const deleteItem = (state, payload, category) => {
 
 const updateItem = (state, payload, category) => {
     const { id } = payload;
+    const isBooks = category === BOOKS;
+    const currentItems = state[category].slice(0);
+    const index = currentItems.findIndex(
+        item => Number(item.id) === Number(id)
+    );
+    currentItems[index] = payload;
+
+    if (isBooks) {
+        return { ...state, [category]: currentItems };
+    }
+
     const previousGenre = state.genres.find(
         genre => String(genre.id) === String(id)
     );
@@ -67,11 +78,6 @@ const updateItem = (state, payload, category) => {
         }
         return book;
     });
-    const currentItems = state[category].slice(0);
-    const index = currentItems.findIndex(
-        item => Number(item.id) === Number(id)
-    );
-    currentItems[index] = payload;
     return { ...state, books: updatedBooks, [category]: currentItems };
 };
 

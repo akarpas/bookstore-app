@@ -43,6 +43,12 @@ button:hover {
     background-color: darkgray;
 }
 
+button:disabled,
+button:disabled:hover {
+    cursor: default;
+    background-color: lightgrey;
+}
+
 .appContainer {
     align-items: center;
     display: flex;

@@ -6,6 +6,7 @@ import capitalize from 'capitalize';
 import { getGenresLoading, getGenres } from '../reducers/items';
 import { createItem, fetchItems } from '../actions/items';
 import CreateForm from './CreateForm';
+import Layout from './Layout';
 import style from './Create.scss';
 
 const BOOKS = 'books';
@@ -90,8 +91,7 @@ const Create = props => {
     };
 
     return (
-        <div className={style.createContainer}>
-            <h2>Create a {category.substring(0, category.length - 1)}</h2>
+        <Layout title={`Create a ${category.substring(0, category.length - 1)}`}>
             {genresLoading ? (
                 <div>Loading...</div>
             ) : (
@@ -116,7 +116,7 @@ const Create = props => {
                     successfully!
                 </div>
             )}
-        </div>
+        </Layout>
     );
 };
 

@@ -8,7 +8,7 @@ import {
 } from '../reducers/items';
 import { fetchItems, updateItem } from '../actions/items';
 import UpdateForm from './UpdateForm';
-import style from './Update.scss';
+import Layout from './Layout';
 
 const BOOKS = 'books';
 
@@ -55,8 +55,7 @@ const Update = props => {
     const itemsLoading = isBooks ? booksLoading : genresLoading;
 
     return (
-        <div className={style.updateContainer}>
-            <h2 className={style.updateHeader}>Update {category}</h2>
+        <Layout title={`Update ${category}`}>
             {itemsLoading ? (
                 <div>Loading...</div>
             ) : (
@@ -71,7 +70,7 @@ const Update = props => {
                     />
                 )
             )}
-        </div>
+        </Layout>
     );
 };
 

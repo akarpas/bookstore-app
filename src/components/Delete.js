@@ -7,7 +7,7 @@ import {
 } from '../reducers/items';
 import { fetchItems, deleteItem } from '../actions/items';
 import DeleteList from './DeleteList';
-import style from './Delete.scss';
+import Layout from './Layout';
 
 const BOOKS = 'books';
 
@@ -39,8 +39,7 @@ const Delete = props => {
     };
 
     return (
-        <div className={style.deleteContainer}>
-            <h2 className={style.deleteHeader}>Delete {category}</h2>
+        <Layout title={`Delete ${category}`}>
             {itemsLoading ? <div>Loading...</div>
                 : <DeleteList
                     content={content}
@@ -48,7 +47,7 @@ const Delete = props => {
                     category={category}
                 />
             }
-        </div>
+        </Layout>
     );
 };
 

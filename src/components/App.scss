@@ -20,6 +20,10 @@ input, select {
 }
 
 button {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid darkgray;
     background-color: lightgrey;
     height: 30px;
     margin: 5px 0;

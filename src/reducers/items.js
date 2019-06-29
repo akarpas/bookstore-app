@@ -38,12 +38,12 @@ const setLoading = (state, category) => {
 
 const deleteItem = (state, payload, category) => {
     const { id, deleteBooks } = payload;
-    const currentItems = state[category].slice(0);
+    const currentItems = [...state[category]];
     const newItems = cloneDeep(currentItems).filter(
         item => Number(item.id) !== Number(id)
     );
     if (deleteBooks) {
-        const currentBooks = state[BOOKS].slice(0);
+        const currentBooks = [...state[BOOKS]];
         const genreToDelete = currentItems.find(item => item.id === String(id)).name.toLowerCase();
         const newBooks = currentBooks.filter(book => {
             return book.genre.toLowerCase() !== genreToDelete;
@@ -56,7 +56,7 @@ const deleteItem = (state, payload, category) => {
 const updateItem = (state, payload, category) => {
     const { id } = payload;
     const isBooks = category === BOOKS;
-    const currentItems = state[category].slice(0);
+    const currentItems = [...state[category]];
     const index = currentItems.findIndex(
         item => Number(item.id) === Number(id)
     );
@@ -83,7 +83,7 @@ const updateItem = (state, payload, category) => {
 
 const createItem = (state, payload, category) => {
     const isBooks = category === BOOKS;
-    const currentItems = state[category].slice(0);
+    const currentItems = [...state[category]];
     const itemIds = currentItems.map(item => item.id);
     const lastId = Math.max.apply(null, itemIds);
     currentItems.push(

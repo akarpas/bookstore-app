@@ -29,7 +29,6 @@ const Update = props => {
 
     useLayoutEffect(() => {
         props.fetchItems(category);
-        // TO DO - Check necessity
         setItemValues({ books: cloneBooks, genres: cloneGenres });
     }, [category]);
 

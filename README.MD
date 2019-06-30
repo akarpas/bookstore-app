@@ -19,3 +19,5 @@ Client will run on localhost:8080
 ### ADDITIONAL IMPROVEMENTS THAT CAN BE IMPLEMENTED
 1. Sorting of Books by price or genre (even though Genre section sorts them by genre)
 2. Add Search box in Genres view
+3. Implemented more tests to increase coverage
+4. Make more error proof in case of errors i.e. ErrorBoundary

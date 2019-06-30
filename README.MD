@@ -21,3 +21,6 @@ Client will run on localhost:8080
 2. Add Search box in Genres view
 3. Implemented more tests to increase coverage
 4. Make more error proof in case of errors i.e. ErrorBoundary
+
+![Alt text](./screenshots/desktop.png?raw=true "Desktop Screenshot")
+![Alt text](./screenshots/mobile.png?raw=true "Mobile Screenshot")

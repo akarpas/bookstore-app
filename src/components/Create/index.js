@@ -3,12 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import capitalize from 'capitalize';
-import { getGenresLoading, getGenres } from '../reducers/items';
-import { createItem, fetchItems } from '../actions/items';
-import { hasNoResults } from '../utils/hasNoResults';
-import CreateForm from './CreateForm';
-import Layout from './Layout';
-import style from './Create.scss';
+import { getGenresLoading, getGenres } from '../../reducers/items';
+import { createItem, fetchItems } from '../../actions/items';
+import { hasNoResults } from '../../utils/hasNoResults';
+import CreateForm from '../CreateForm';
+import Layout from '../Layout';
+
+import style from './index.scss';
 
 const BOOKS = 'books';
 const GENRES = 'genres';

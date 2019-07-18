@@ -1,7 +1,7 @@
 import React from 'react';
-import LogoImage from '../assets/logo.png';
+import LogoImage from '../../assets/logo.png';
 
-import style from './Logo.scss';
+import style from './index.scss';
 
 const Logo = () => (
     <div className={style.logoContainer}>

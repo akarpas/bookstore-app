@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import style from './Layout.scss';
+import style from './index.scss';
 
 const Layout = props => {
     const { children, title } = props;

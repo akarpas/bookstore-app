@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { hasNoResults } from '../utils/hasNoResults';
+import { hasNoResults } from '../../utils/hasNoResults';
 
-import style from './CreateForm.scss';
+import style from './index.scss';
 
 const CreateForm = props => {
     const {

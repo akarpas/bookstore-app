@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
 import {
     getBooksLoading, getGenresLoading, getBooks, getGenres,
-} from '../reducers/items';
-import { fetchItems, updateItem } from '../actions/items';
-import UpdateForm from './UpdateForm';
-import Layout from './Layout';
+} from '../../reducers/items';
+import { fetchItems, updateItem } from '../../actions/items';
+import UpdateForm from '../UpdateForm';
+import Layout from '../Layout';
 
 const BOOKS = 'books';
 

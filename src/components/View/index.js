@@ -2,12 +2,12 @@ import React, { useLayoutEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchItems } from '../actions/items';
+import { fetchItems } from '../../actions/items';
 import {
     getBooksLoading, getGenresLoading, getBooks, getGenres,
-} from '../reducers/items';
-import ViewList from './ViewList';
-import Layout from './Layout';
+} from '../../reducers/items';
+import ViewList from '../ViewList';
+import Layout from '../Layout';
 
 const BOOKS = 'books';
 

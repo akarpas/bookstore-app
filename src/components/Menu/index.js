@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import viewIcon from '../assets/view.png';
-import deleteIcon from '../assets/delete.png';
-import updateIcon from '../assets/update.png';
-import createIcon from '../assets/create.png';
-import style from './Menu.scss';
+import viewIcon from '../../assets/view.png';
+import deleteIcon from '../../assets/delete.png';
+import updateIcon from '../../assets/update.png';
+import createIcon from '../../assets/create.png';
+
+import style from './index.scss';
 
 const MENU_OPTIONS = [
     {

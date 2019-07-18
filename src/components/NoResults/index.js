@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './NoResults.scss';
+import style from './index.scss';
 
 const NoResults = () => (
     <div className={style.noResults}>

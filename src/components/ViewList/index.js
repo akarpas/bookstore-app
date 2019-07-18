@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
-import { compare } from '../utils/compare';
-import { hasNoResults } from '../utils/hasNoResults';
-import NoResults from './NoResults';
-import style from './ViewList.scss';
+import { compare } from '../../utils/compare';
+import { hasNoResults } from '../../utils/hasNoResults';
+import NoResults from '../NoResults';
+
+import style from './index.scss';
 
 const ViewList = props => {
     const { category, content } = props;

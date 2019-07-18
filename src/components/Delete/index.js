@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
     getBooksLoading, getGenresLoading, getBooks, getGenres
-} from '../reducers/items';
-import { fetchItems, deleteItem } from '../actions/items';
-import DeleteList from './DeleteList';
-import Layout from './Layout';
+} from '../../reducers/items';
+import { fetchItems, deleteItem } from '../../actions/items';
+import DeleteList from '../DeleteList';
+import Layout from '../Layout';
 
 const BOOKS = 'books';
 

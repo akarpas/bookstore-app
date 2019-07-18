@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import View from './View';
-import Create from './Create';
-import Delete from './Delete';
-import Update from './Update';
-import NoMatch from './NoMatch';
+import View from '../View';
+import Create from '../Create';
+import Delete from '../Delete';
+import Update from '../Update';
+import NoMatch from '../NoMatch';
 
-import style from './Content.scss';
+import style from './index.scss';
 
 const Content = () => (
     <div className={style.contentContainer}>

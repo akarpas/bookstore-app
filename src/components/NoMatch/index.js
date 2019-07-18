@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import style from './NoMatch.scss';
+import style from './index.scss';
 
 const NoMatch = props => {
     const { location } = props;

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { hasNoResults } from '../utils/hasNoResults';
-import NoResults from './NoResults';
+import { hasNoResults } from '../../utils/hasNoResults';
+import NoResults from '../NoResults';
 
-import style from './DeleteList.scss';
+import style from './index.scss';
 
 const DeleteList = props => {
     const { category, content, handleDeleteItem, handleCheckBox } = props;

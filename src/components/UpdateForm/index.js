@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
-import { compare } from '../utils/compare';
-import { hasNoResults } from '../utils/hasNoResults';
-import NoResults from './NoResults';
-import style from './UpdateForm.scss';
+import { compare } from '../../utils/compare';
+import { hasNoResults } from '../../utils/hasNoResults';
+import NoResults from '../NoResults';
+
+import style from './index.scss';
 
 const UpdateForm = props => {
     const {
